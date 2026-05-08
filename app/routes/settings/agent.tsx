@@ -64,7 +64,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
         <Title>Yönetim Ajanı</Title>
         <Text>
           The Headplane Agent syncs node information like OS version and connectivity details from
-          your Güvenli Ağ.
+          your Tailnet.
         </Text>
       </div>
 

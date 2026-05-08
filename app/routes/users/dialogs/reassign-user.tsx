@@ -34,7 +34,7 @@ export default function ReassignUser({
           </Link>
         </Text>
         {role === "owner" ? (
-          <Notice>The Güvenli Ağ owner cannot be reassigned.</Notice>
+          <Notice>The Tailnet owner cannot be reassigned.</Notice>
         ) : (
           <>
             <input name="action_id" type="hidden" value="reassign_user" />

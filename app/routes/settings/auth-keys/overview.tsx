@@ -193,7 +193,7 @@ export default function Page({
       <h1 className="mb-2 text-2xl font-medium">Erişim Anahtarları</h1>
       <p className="mb-4">
         Headscale fully supports pre-authentication keys in order to easily add devices to your
-        Güvenli Ağ. To learn more about using pre-authentication keys, visit the{" "}
+        Tailnet. To learn more about using pre-authentication keys, visit the{" "}
         <Link external styled to="https://tailscale.com/kb/1085/auth-keys/">
           Tailscale documentation
         </Link>

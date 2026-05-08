@@ -123,7 +123,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
             <WifiOff className="mb-2 h-6 w-6 text-red-500" />
           </div>
           <Card.Text>
-            <Code>{hostname}</Code> is not currently connected to the Güvenli Ağ.
+            <Code>{hostname}</Code> is not currently connected to the Tailnet.
           </Card.Text>
           <Button className="mt-8 w-full" onClick={() => window.location.reload()}>
             Retry Connection
@@ -164,7 +164,7 @@ function SSHConsole({
         return;
       }
 
-      setStatus("Joining Güvenli Ağ…");
+      setStatus("Joining Tailnet…");
       const instance = create({
         controlURL: node.controlURL,
         preAuthKey: node.preAuthKey,

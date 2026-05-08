@@ -215,7 +215,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
         <div className="flex flex-col">
           <h1 className="mb-2 text-2xl font-medium">Cihazlar</h1>
           <p>
-            Manage the devices connected to your Güvenli Ağ.{" "}
+            Manage the devices connected to your Tailnet.{" "}
             <Link external styled to="https://tailscale.com/kb/1372/manage-devices">
               Learn more
             </Link>

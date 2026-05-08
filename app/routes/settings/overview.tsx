@@ -27,7 +27,7 @@ export default function Page({ loaderData: { config, isOidcEnabled } }: Route.Co
         <h1 className="mb-4 text-2xl font-medium">Erişim Anahtarları</h1>
         <p>
           Headscale fully supports pre-authentication keys in order to easily add devices to your
-          Güvenli Ağ. To learn more about using pre-authentication keys, visit the{" "}
+          Tailnet. To learn more about using pre-authentication keys, visit the{" "}
           <Link external styled to="https://tailscale.com/kb/1085/auth-keys/">
             Tailscale documentation
           </Link>
@@ -43,7 +43,7 @@ export default function Page({ loaderData: { config, isOidcEnabled } }: Route.Co
         <h1 className="mb-4 text-2xl font-medium">Yönetim Ajanı</h1>
         <p>
           The Headplane Agent syncs node information like OS version and connectivity details from
-          your Güvenli Ağ.
+          your Tailnet.
         </p>
       </div>
       <Link to="/settings/agent">
@@ -59,7 +59,7 @@ export default function Page({ loaderData: { config, isOidcEnabled } }: Route.Co
             <p>
               Headscale supports restricting OIDC authentication to only allow certain email
               domains, groups, or users to authenticate. This can be used to limit access to your
-              Güvenli Ağ to only certain users or groups and Headplane will also respect these settings
+              Tailnet to only certain users or groups and Headplane will also respect these settings
               when authenticating.{" "}
               <Link external styled to="https://headscale.net/stable/ref/oidc/#basic-configuration">
                 Learn More

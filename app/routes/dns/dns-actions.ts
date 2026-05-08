@@ -26,7 +26,7 @@ export async function dnsAction({ request, context }: Route.ActionArgs) {
   }
 
   switch (action) {
-    case "rename_güvenli ağ": {
+    case "rename_tailnet": {
       const newName = formData.get("new_name")?.toString();
       if (!newName) {
         return data({ success: false }, 400);
@@ -40,7 +40,7 @@ export async function dnsAction({ request, context }: Route.ActionArgs) {
       ]);
 
       await context.integration?.onConfigChange(api);
-      return { message: "Güvenli Ağ renamed successfully" };
+      return { message: "Tailnet renamed successfully" };
     }
     case "toggle_magic": {
       const newState = formData.get("new_state")?.toString();

@@ -18,7 +18,7 @@ export default function ManageRecords({ records, isDisabled }: Props) {
     <div className="flex w-full flex-col sm:w-2/3">
       <h1 className="mb-4 text-2xl font-medium">DNS Kayıtları</h1>
       <p>
-        Headscale supports adding custom DNS records to your Güvenli Ağ. As of now, only <Code>A</Code>{" "}
+        Headscale supports adding custom DNS records to your Tailnet. As of now, only <Code>A</Code>{" "}
         ve <Code>AAAA</Code> kayıtları desteklenir.{" "}
         <Link external styled to="https://headscale.net/stable/ref/dns">
           Learn More
