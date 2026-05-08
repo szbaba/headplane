@@ -1,5 +1,6 @@
 import { AlertDialog } from "@base-ui/react/alert-dialog";
 import React, { cloneElement, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Form, type HTMLFormMethod } from "react-router";
 
 import Button, { type ButtonProps } from "~/components/button";
@@ -52,6 +53,7 @@ export interface DialogPanelProps {
 }
 
 function Panel(props: DialogPanelProps) {
+  const { t } = useTranslation();
   const { children, onSubmit, isDisabled, variant, method = "POST" } = props;
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -80,17 +82,17 @@ function Panel(props: DialogPanelProps) {
         <div className="flex flex-col gap-4">{children}</div>
         <div className="mt-5 flex justify-end gap-3">
           {variant === "unactionable" ? (
-            <AlertDialog.Close render={<Button>Kapat</Button>} />
+            <AlertDialog.Close render={<Button>{t("common.close")}</Button>} />
           ) : (
             <>
-              <AlertDialog.Close render={<Button>İptal</Button>} />
+              <AlertDialog.Close render={<Button>{t("common.cancel")}</Button>} />
               <AlertDialog.Close ref={closeRef} className="hidden" aria-hidden tabIndex={-1} />
               <Button
                 disabled={isDisabled}
                 type="submit"
                 variant={variant === "destructive" ? "danger" : "heavy"}
               >
-                Confirm
+                {t("common.confirm")}
               </Button>
             </>
           )}

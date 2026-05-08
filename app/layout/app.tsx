@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Outlet, redirect, type ShouldRevalidateFunction } from "react-router";
 
 import { ErrorBanner } from "~/components/error-banner";
@@ -104,6 +105,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 }
 
 export default function AppLayout({ loaderData }: Route.ComponentProps) {
+  const { t } = useTranslation();
   return (
     <>
       <Header
@@ -116,11 +118,10 @@ export default function AppLayout({ loaderData }: Route.ComponentProps) {
           <StatusBanner
             className="mb-4"
             dismissable={false}
-            title="Headscale Unreachable"
+            title={t("app.headscaleUnreachable")}
             variant="critical"
           >
-            Unable to connect to the Headscale server. Data shown may be stale and changes cannot be
-            saved until the connection is restored.
+            {t("app.headscaleUnreachableDesc")}
           </StatusBanner>
         )}
         <Outlet />

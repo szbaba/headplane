@@ -1,5 +1,6 @@
 import { Plus, TagsIcon, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useFetcher } from "react-router";
 
 import Button from "~/components/button";
@@ -20,6 +21,7 @@ interface TagsProps {
 }
 
 export default function Tags({ machine, isOpen, setIsOpen, existingTags }: TagsProps) {
+  const { t } = useTranslation();
   const fetcher = useFetcher();
   const submittingRef = useRef(false);
   const [tags, setTags] = useState([...machine.tags]);
@@ -70,13 +72,13 @@ export default function Tags({ machine, isOpen, setIsOpen, existingTags }: TagsP
         }}
         isDisabled={fetcher.state !== "idle"}
       >
-        <Title>Edit ACL tags for {machine.givenName}</Title>
+        <Title>{t("machinesDialog.tagsTitle", { name: machine.givenName })}</Title>
         <Text>
-          ACL tags can be used to reference machines in your ACL policies. See the{" "}
+          {t("machinesDialog.tagsDocsIntro")}
           <Link external styled to="https://tailscale.com/kb/1068/acl-tags">
-            Tailscale documentation
-          </Link>{" "}
-          for more information.
+            {t("authKeys.introLink")}
+          </Link>
+          {t("machinesDialog.tagsDocsTail")}
         </Text>
         {error ? (
           <p className="mt-2 rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400">
@@ -87,7 +89,7 @@ export default function Tags({ machine, isOpen, setIsOpen, existingTags }: TagsP
           {tags.length === 0 ? (
             <TableList.Item className="flex flex-col items-center gap-2.5 py-4 opacity-70">
               <TagsIcon />
-              <p className="font-semibold">No tags are set on this machine</p>
+              <p className="font-semibold">{t("machines.noTagsSet")}</p>
             </TableList.Item>
           ) : (
             tags.map((item) => (
@@ -108,13 +110,13 @@ export default function Tags({ machine, isOpen, setIsOpen, existingTags }: TagsP
 
         <div className="mt-2 flex items-center gap-2">
           <Input
-            aria-label="Add a tag"
+            aria-label={t("machinesDialog.addTag")}
             className="w-full"
             value={tag}
             onChange={setTag}
             invalid={tag.length > 0 && tagIsInvalid}
             placeholder="tag:example"
-            label="Tag"
+            label={t("machinesDialog.tagLabel")}
             labelHidden
           />
           <Button
@@ -128,10 +130,7 @@ export default function Tags({ machine, isOpen, setIsOpen, existingTags }: TagsP
             <Plus className="p-1" size={30} />
           </Button>
         </div>
-        <p className="mt-2 text-sm opacity-50">
-          Not seeing the tags you expect? Tags need to be defined in your access control policy
-          before they can be assigned to machines.
-        </p>
+        <p className="mt-2 text-sm opacity-50">{t("machinesDialog.tagsNotSeen")}</p>
       </DialogPanel>
     </Dialog>
   );

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useFetcher } from "react-router";
 
 import Button from "~/components/button";
@@ -6,6 +7,7 @@ import Notice from "~/components/notice";
 import StatusCircle from "~/components/status-circle";
 import Text from "~/components/text";
 import Title from "~/components/title";
+import i18n from "~/i18n/config";
 import { formatTimeDelta } from "~/utils/time";
 
 import type { Route } from "./+types/agent";
@@ -30,7 +32,7 @@ export async function action({ request, context }: Route.ActionArgs) {
   await context.auth.require(request);
 
   if (!context.agents) {
-    return { success: false, error: "Agent is not enabled" };
+    return { success: false, error: i18n.t("settings.agentNotEnabledShort") };
   }
 
   await context.agents.triggerSync();
@@ -39,18 +41,20 @@ export async function action({ request, context }: Route.ActionArgs) {
 }
 
 export default function Page({ loaderData }: Route.ComponentProps) {
+  const { t } = useTranslation();
   const fetcher = useFetcher<typeof action>();
   const isSyncing = fetcher.state !== "idle";
 
   if (!loaderData.enabled) {
     return (
       <div className="flex max-w-(--breakpoint-lg) flex-col gap-8">
-        <Title>Yönetim Ajanı</Title>
-        <Notice title="Agent Not Enabled">
-          The Headplane Agent is not enabled. To learn how to set up the agent, visit the{" "}
+        <Title>{t("settings.agentTitle")}</Title>
+        <Notice title={t("settings.agentNotEnabled")}>
+          {t("settings.agentNotEnabledDesc")}
           <Link external styled to="https://headplane.dev/docs/agent">
-            documentation
+            {t("settings.agentDocs")}
           </Link>
+          {t("settings.agentDocsTail")}
         </Notice>
       </div>
     );
@@ -61,42 +65,41 @@ export default function Page({ loaderData }: Route.ComponentProps) {
   return (
     <div className="flex max-w-(--breakpoint-lg) flex-col gap-8">
       <div className="flex w-full flex-col sm:w-2/3">
-        <Title>Yönetim Ajanı</Title>
-        <Text>
-          The Headplane Agent syncs node information like OS version and connectivity details from
-          your Tailnet.
-        </Text>
+        <Title>{t("settings.agentTitle")}</Title>
+        <Text>{t("settings.agentDesc")}</Text>
       </div>
 
       <div className="flex items-center gap-3">
         <StatusCircle isOnline={!hasError} className="h-5 w-5" />
-        <span className="text-lg font-medium">{hasError ? "Error" : "Healthy"}</span>
+        <span className="text-lg font-medium">
+          {hasError ? t("settings.agentError") : t("settings.agentHealthy")}
+        </span>
       </div>
 
       <div className="flex flex-col gap-2">
         <Text>
-          <span className="font-medium">Last synced: </span>
+          <span className="font-medium">{t("settings.lastSynced")}</span>
           {loaderData.syncedAt ? (
             <span suppressHydrationWarning>{formatTimeDelta(new Date(loaderData.syncedAt))}</span>
           ) : (
-            "Never"
+            t("settings.neverSynced")
           )}
         </Text>
         <Text>
-          <span className="font-medium">Nodes synced: </span>
+          <span className="font-medium">{t("settings.nodesSynced")}</span>
           {loaderData.nodeCount}
         </Text>
       </div>
 
       {loaderData.error ? (
-        <Notice variant="error" title="Sync Error">
+        <Notice variant="error" title={t("settings.syncError")}>
           {loaderData.error}
         </Notice>
       ) : undefined}
 
       <fetcher.Form method="post">
         <Button type="submit" variant="heavy" disabled={isSyncing}>
-          {isSyncing ? "Syncing…" : "Sync Now"}
+          {isSyncing ? t("settings.syncingBtn") : t("settings.syncNowBtn")}
         </Button>
       </fetcher.Form>
     </div>

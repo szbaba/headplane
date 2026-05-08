@@ -1,4 +1,5 @@
 import { type } from "arktype";
+import { useTranslation } from "react-i18next";
 
 import Button from "~/components/button";
 import Dialog, { DialogPanel } from "~/components/dialog";
@@ -6,6 +7,7 @@ import Input from "~/components/input";
 import Text from "~/components/text";
 import Title from "~/components/title";
 import { useForm } from "~/hooks/use-form";
+import i18n from "~/i18n/config";
 
 const domainSchema = type({
   domain: "string > 0",
@@ -17,6 +19,7 @@ interface AddDomainProps {
 }
 
 export default function AddDomain({ domains, isDisabled }: AddDomainProps) {
+  const { t } = useTranslation();
   const form = useForm({
     schema: domainSchema,
     validate: (values) => {
@@ -24,16 +27,16 @@ export default function AddDomain({ domains, isDisabled }: AddDomainProps) {
       if (domain.length === 0) return undefined;
 
       if (domains.includes(domain)) {
-        return { domain: "This domain already exists in the list." };
+        return { domain: i18n.t("settings.domainListedAlready") };
       }
 
       try {
         const url = new URL(`http://${domain}`);
         if (url.hostname !== domain) {
-          return { domain: "This is not a valid domain." };
+          return { domain: i18n.t("settings.domainNotValid") };
         }
       } catch {
-        return { domain: "This is not a valid domain." };
+        return { domain: i18n.t("settings.domainNotValid") };
       }
 
       return undefined;
@@ -43,23 +46,20 @@ export default function AddDomain({ domains, isDisabled }: AddDomainProps) {
 
   return (
     <Dialog>
-      <Button disabled={isDisabled}>Add domain</Button>
+      <Button disabled={isDisabled}>{t("settings.addDomainBtn")}</Button>
       <DialogPanel>
-        <Title>Alan Adı Ekle</Title>
-        <Text className="mb-4">
-          Add this domain to a list of allowed email domains that can authenticate with Headscale
-          via OIDC.
-        </Text>
+        <Title>{t("settings.addDomainPanelTitle")}</Title>
+        <Text className="mb-4">{t("settings.addDomainPanelDesc")}</Text>
         <input name="action_id" type="hidden" value="add_domain" />
         <Input
           {...form.field("domain")}
           description={
             domain.length > 0
-              ? `Matches users with <user>@${domain}`
-              : "Enter a domain to match users with their email addresses."
+              ? `${t("settings.domainMatchPre")}${domain}`
+              : t("settings.domainMatchEmpty")
           }
           required
-          label="Domain"
+          label={t("settings.domainLabel")}
           placeholder="example.com"
         />
       </DialogPanel>
