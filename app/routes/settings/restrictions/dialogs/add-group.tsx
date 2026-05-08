@@ -35,7 +35,7 @@ export default function AddGroup({ groups, isDisabled }: AddGroupProps) {
     <Dialog>
       <Button disabled={isDisabled}>Add group</Button>
       <DialogPanel>
-        <Title>Add group</Title>
+        <Title>Grup Ekle</Title>
         <Text className="mb-4">
           Add this group to a list of allowed groups that can authenticate with Headscale via OIDC.
         </Text>

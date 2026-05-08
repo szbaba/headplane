@@ -72,7 +72,7 @@ export async function loadHeadscaleDNS(path?: string) {
     return;
   }
 
-  log.debug("config", "Loading Headscale DNS configuration file: %s", path);
+  log.debug("config", "Yükleniyor Headscale DNS configuration file: %s", path);
   const { w, r } = await validateConfigPath(path);
   if (!r) {
     return new HeadscaleDNSConfig("no");

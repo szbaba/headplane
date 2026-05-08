@@ -14,14 +14,14 @@ export default function ExpireAuthKey({ authKey, user }: ExpireAuthKeyProps) {
     <Dialog>
       <Button variant="heavy">Expire Key</Button>
       <DialogPanel variant="destructive">
-        <Title>Expire auth key?</Title>
+        <Title>Expire erişim anahtarı?</Title>
         <input name="action_id" type="hidden" value="expire_preauthkey" />
         <input name="user_id" type="hidden" value={user.id} />
         <input name="key_id" type="hidden" value={authKey.id} />
         <input name="key" type="hidden" value={authKey.key} />
         <Text>
           Expiring this authentication key will immediately prevent it from being used to
-          authenticate new devices. This action cannot be undone.
+          authenticate new devices. Bu işlem geri alınamaz.
         </Text>
       </DialogPanel>
     </Dialog>

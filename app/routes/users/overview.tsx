@@ -179,10 +179,10 @@ export default function Page({ loaderData }: Route.ComponentProps) {
             <table className="w-full min-w-[640px] table-auto rounded-lg">
               <thead className="text-mist-600 dark:text-mist-300">
                 <tr className="px-0.5 text-left">
-                  <th className="pb-2 text-xs font-bold uppercase">User</th>
+                  <th className="pb-2 text-xs font-bold uppercase">Kullanıcı</th>
                   <th className="pb-2 text-xs font-bold uppercase">Role</th>
                   <th className="pb-2 text-xs font-bold uppercase">Last Login</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Status</th>
+                  <th className="pb-2 text-xs font-bold uppercase">Durum</th>
                   <th className="w-12 pb-2">
                     <span className="sr-only">Actions</span>
                   </th>
@@ -220,9 +220,9 @@ export default function Page({ loaderData }: Route.ComponentProps) {
             <table className="w-full min-w-[640px] table-auto rounded-lg">
               <thead className="text-mist-600 dark:text-mist-300">
                 <tr className="px-0.5 text-left">
-                  <th className="pb-2 text-xs font-bold uppercase">User</th>
+                  <th className="pb-2 text-xs font-bold uppercase">Kullanıcı</th>
                   <th className="pb-2 text-xs font-bold uppercase">Created At</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Status</th>
+                  <th className="pb-2 text-xs font-bold uppercase">Durum</th>
                   <th className="w-12 pb-2">
                     <span className="sr-only">Actions</span>
                   </th>

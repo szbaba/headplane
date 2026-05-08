@@ -19,7 +19,7 @@ export async function loadIntegration(context: HeadplaneConfig["integration"]) {
     }
   } catch (error) {
     log.error("config", "Failed to load integration %s: %s", integration, error);
-    log.debug("config", "Loading error: %o", error);
+    log.debug("config", "Yükleniyor error: %o", error);
     return;
   }
 

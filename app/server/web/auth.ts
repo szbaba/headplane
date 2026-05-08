@@ -167,7 +167,7 @@ export function createAuthService(opts: AuthServiceOptions): AuthService {
       return {
         kind: "api_key",
         sessionId: session.id,
-        displayName: session.api_key_display ?? "API Key",
+        displayName: session.api_key_display ?? "API Anahtarı",
         apiKey: payload.api_key,
       };
     }

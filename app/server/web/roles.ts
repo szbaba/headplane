@@ -15,7 +15,7 @@ export const Capabilities = {
   generate_authkeys: 1 << 12,
   generate_own_authkeys: 1 << 16,
   use_tags: 1 << 13,
-  write_tailnet: 1 << 14,
+  write_güvenli ağ: 1 << 14,
   owner: 1 << 15,
 } as const;
 
@@ -35,7 +35,7 @@ export const Roles = {
     Capabilities.write_users |
     Capabilities.generate_authkeys |
     Capabilities.use_tags |
-    Capabilities.write_tailnet |
+    Capabilities.write_güvenli ağ |
     Capabilities.owner,
 
   admin:
@@ -53,7 +53,7 @@ export const Roles = {
     Capabilities.write_users |
     Capabilities.generate_authkeys |
     Capabilities.use_tags |
-    Capabilities.write_tailnet,
+    Capabilities.write_güvenli ağ,
 
   network_admin:
     Capabilities.ui_access |
@@ -66,7 +66,7 @@ export const Roles = {
     Capabilities.read_users |
     Capabilities.generate_authkeys |
     Capabilities.use_tags |
-    Capabilities.write_tailnet,
+    Capabilities.write_güvenli ağ,
 
   it_admin:
     Capabilities.ui_access |

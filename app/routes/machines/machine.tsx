@@ -128,7 +128,7 @@ export default function Page({
           </div>
         </div>
         <div className="p-2 pl-4">
-          <p className="text-sm text-mist-600 dark:text-mist-300">Status</p>
+          <p className="text-sm text-mist-600 dark:text-mist-300">Durum</p>
           <div className="mt-1 mb-8 flex gap-1">
             {mapTagsToComponents(node, uiTags)}
             {tags.map((tag) => (
@@ -209,8 +209,8 @@ export default function Page({
         </div>
         <div>
           <span className="flex items-center gap-x-1 text-mist-600 dark:text-mist-300">
-            Exit Node
-            <Tooltip content="Whether this machine can act as an exit node for your tailnet.">
+            Çıkış Düğümü
+            <Tooltip content="Whether this machine can act as an exit node for your güvenli ağ.">
               <Info className="h-3.5 w-3.5" />
             </Tooltip>
           </span>
@@ -294,26 +294,26 @@ export default function Page({
           <Attribute
             isCopyable
             name="Tailscale IPv4"
-            tooltip="This machine’s IPv4 address within your tailnet (your private Tailscale network)."
+            tooltip="This machine’s IPv4 address within your güvenli ağ (your private Tailscale network)."
             value={getIpv4Address(node.ipAddresses)}
           />
           <Attribute
             isCopyable
             name="Tailscale IPv6"
-            tooltip="This machine’s IPv6 address within your tailnet (your private Tailscale network). Connections within your tailnet support IPv6 even if your ISP does not."
+            tooltip="This machine’s IPv6 address within your güvenli ağ (your private Tailscale network). Connections within your güvenli ağ support IPv6 even if your ISP does not."
             value={getIpv6Address(node.ipAddresses)}
           />
           <Attribute
             isCopyable
             name="Short domain"
-            tooltip="Users of your tailnet can use this DNS short name to access this machine."
+            tooltip="Users of your güvenli ağ can use this DNS short name to access this machine."
             value={node.givenName}
           />
           {magic ? (
             <Attribute
               isCopyable
               name="Full domain"
-              tooltip="Users of your tailnet can use this DNS name to access this machine."
+              tooltip="Users of your güvenli ağ can use this DNS name to access this machine."
               value={`${node.givenName}.${magic}`}
             />
           ) : undefined}

@@ -54,7 +54,7 @@ export function Layout({ children }: { readonly children: React.ReactNode }) {
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <Meta />
           <Links />
-          <link href={`${__PREFIX__}/favicon.ico`} rel="icon" />
+          <link href={`${__PREFIX__}/favicon.png`} rel="icon" type="image/png" />
         </head>
         <body className="w-full overflow-x-hidden overscroll-none dark:bg-mist-900 dark:text-mist-50">
           {children}

@@ -15,9 +15,7 @@ import { NavLink, unstable_useRoute as useRoute, useLocation, useSubmit } from "
 
 import Link from "~/components/link";
 import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from "~/components/menu";
-import logoBg from "~/logo/dark-bg.svg";
-import logoDark from "~/logo/dark.svg";
-import logoLight from "~/logo/light.svg";
+import corsecureLogo from "~/logo/corsecure.png";
 import cn from "~/utils/cn";
 import type { ColorScheme } from "~/utils/color-scheme";
 
@@ -79,11 +77,11 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
       <div className="container flex items-center gap-x-4 py-4">
         <div className="flex min-w-0 items-center gap-x-4">
           <div className="flex items-center gap-x-2">
-            <picture className="min-w-8">
-              <source srcSet={logoLight} media="(prefers-color-scheme: dark)" />
-              <source srcSet={logoDark} media="(prefers-color-scheme: light)" />
-              <img src={logoBg} alt="Corsecure Yönetim Paneli" />
-            </picture>
+            <img
+              src={corsecureLogo}
+              alt="Corsecure Yönetim Paneli"
+              className="size-8 rounded-md"
+            />
             <h1 className="text-2xl font-semibold">Corsecure</h1>
           </div>
           {showTabs && (
@@ -124,18 +122,18 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
             </MenuTrigger>
             <MenuContent align="end">
               <MenuItem>
-                <Link external to="https://headplane.net">
-                  Docs
+                <Link external to="https://corsecure.net/docs">
+                  Belgeler
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link external to="https://headscale.net">
-                  Headscale
+                <Link external to="https://corsecure.net">
+                  Corsecure
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link external to="https://tailscale.com/download">
-                  Download
+                  Uygulamayı İndir
                 </Link>
               </MenuItem>
             </MenuContent>
@@ -153,7 +151,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                 <div className="text-mist-900 dark:text-mist-50">
                   {user.subject === "api_key" ? (
                     <>
-                      <p className="font-bold">API Key</p>
+                      <p className="font-bold">API Anahtarı</p>
                       <p>{user.name}</p>
                     </>
                   ) : (
@@ -187,7 +185,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                 variant="danger"
                 onClick={() => submit({}, { action: "/logout", method: "POST" })}
               >
-                Logout
+                Oturumu Kapat
               </MenuItem>
             </MenuContent>
           </Menu>

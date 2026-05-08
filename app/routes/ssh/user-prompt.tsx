@@ -14,7 +14,7 @@ export default function UserPrompt({ hostname }: UserPromptProps) {
   return (
     <div className="flex h-screen items-center justify-center">
       <Card>
-        <Card.Title>Enter Username</Card.Title>
+        <Card.Title>Kullanıcı Adı Girin</Card.Title>
         <Card.Text className="mb-4">
           Enter the username you want to use to connect to <Code>{hostname}</Code>
           {". "}

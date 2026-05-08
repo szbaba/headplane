@@ -284,7 +284,7 @@ async function createUndiciAgent(certPath?: string): Promise<Agent> {
   }
 
   try {
-    log.debug("config", "Loading certificate from %s", certPath);
+    log.debug("config", "Yükleniyor certificate from %s", certPath);
     const data = await readFile(certPath, "utf8");
 
     log.info("config", "Using certificate from %s", certPath);

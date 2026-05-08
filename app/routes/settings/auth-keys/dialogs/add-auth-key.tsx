@@ -89,11 +89,11 @@ export default function AddAuthKey({
       }}
     >
       <Button className="my-4" onClick={() => setIsOpen(true)}>
-        Create pre-auth key
+        Create pre-erişim anahtarı
       </Button>
       {createdKey ? (
         <DialogPanel variant="unactionable">
-          <Title>Pre-auth key created</Title>
+          <Title>Pre-erişim anahtarı created</Title>
           <Text>Copy this key now. You will not be able to see the full key again.</Text>
           <CodeBlock className="mt-4">{createdKey}</CodeBlock>
           <Text className="mt-4 text-sm">To register a device with this key:</Text>
@@ -116,7 +116,7 @@ export default function AddAuthKey({
           }}
           isDisabled={fetcher.state !== "idle" || !canSubmit}
         >
-          <Title>Generate auth key</Title>
+          <Title>Generate erişim anahtarı</Title>
 
           {!selfServiceOnly && (
             <div className="mb-4 flex items-center justify-between gap-2">

@@ -35,7 +35,7 @@ export default function AddUser({ users, isDisabled }: AddUserProps) {
     <Dialog>
       <Button disabled={isDisabled}>Add user</Button>
       <DialogPanel>
-        <Title>Add user</Title>
+        <Title>Kullanıcı Ekle</Title>
         <Text className="mb-4">
           Add this user to a list of allowed users that can authenticate with Headscale via OIDC.
         </Text>

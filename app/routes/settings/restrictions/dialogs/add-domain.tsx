@@ -45,7 +45,7 @@ export default function AddDomain({ domains, isDisabled }: AddDomainProps) {
     <Dialog>
       <Button disabled={isDisabled}>Add domain</Button>
       <DialogPanel>
-        <Title>Add domain</Title>
+        <Title>Alan Adı Ekle</Title>
         <Text className="mb-4">
           Add this domain to a list of allowed email domains that can authenticate with Headscale
           via OIDC.

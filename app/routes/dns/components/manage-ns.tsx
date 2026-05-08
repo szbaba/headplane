@@ -21,7 +21,7 @@ export default function ManageNS({ nameservers, isDisabled, overrideLocalDns }: 
     <div className="flex w-full flex-col sm:w-2/3">
       <h1 className="mb-4 text-2xl font-medium">İsim Sunucuları</h1>
       <p>
-        Set the nameservers used by devices on the Tailnet to resolve DNS queries.{" "}
+        Set the nameservers used by devices on the Güvenli Ağ to resolve DNS queries.{" "}
         <Link external styled to="https://tailscale.com/kb/1054/dns">
           Learn more
         </Link>
@@ -71,7 +71,7 @@ function NameserverList({ isGlobal, isDisabled, nameservers, overrideLocalDns, n
                 content={
                   <>
                     When enabled, use the DNS servers listed below to resolve names outside the
-                    tailnet. When disabled (default), devices will prefer their local DNS
+                    güvenli ağ. When disabled (default), devices will prefer their local DNS
                     configuration.{" "}
                     <Link external styled to="https://tailscale.com/kb/1054/dns#global-nameservers">
                       Learn More
@@ -81,7 +81,7 @@ function NameserverList({ isGlobal, isDisabled, nameservers, overrideLocalDns, n
               >
                 <Info className="size-4" />
               </Tooltip>
-              <p>Override DNS servers</p>
+              <p>DNS sunucularını değiştir</p>
               <Switch
                 className="h-[15px] w-[23px] p-0.5"
                 defaultChecked={overrideLocalDns}

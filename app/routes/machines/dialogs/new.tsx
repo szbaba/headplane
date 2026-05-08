@@ -78,7 +78,7 @@ export default function NewMachine(data: NewMachineProps) {
           >
             <div className="flex items-center gap-x-3">
               <FileKey2 className="w-4" />
-              Generate Pre-auth Key
+              Generate Erişim Anahtarı
             </div>
           </MenuItem>
         </MenuContent>

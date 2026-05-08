@@ -4,7 +4,7 @@ import { defineApiEndpoints } from "../factory";
 
 export interface PreAuthKeyEndpoints {
   /**
-   * List all pre-auth keys. Requires Headscale 0.28+.
+   * List all pre-erişim anahtarıs. Requires Headscale 0.28+.
    */
   getAllPreAuthKeys(): Promise<PreAuthKey[]>;
 

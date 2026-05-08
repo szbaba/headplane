@@ -34,7 +34,7 @@ export default function ReassignUser({
           </Link>
         </Text>
         {role === "owner" ? (
-          <Notice>The Tailnet owner cannot be reassigned.</Notice>
+          <Notice>The Güvenli Ağ owner cannot be reassigned.</Notice>
         ) : (
           <>
             <input name="action_id" type="hidden" value="reassign_user" />
@@ -86,7 +86,7 @@ function mapRoleToName(role: string) {
     case "viewer":
       return {
         name: "Viewer",
-        desc: "Can view machines, users, and generate their own auth keys.",
+        desc: "Can view machines, users, and generate their own erişim anahtarıs.",
       };
     case "member":
       return {

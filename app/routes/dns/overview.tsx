@@ -10,7 +10,7 @@ import { Capabilities } from "~/server/web/roles";
 import ManageDomains from "./components/manage-domains";
 import ManageNS from "./components/manage-ns";
 import ManageRecords from "./components/manage-records";
-import RenameTailnet from "./components/rename-tailnet";
+import RenameGüvenli Ağ from "./components/rename-güvenli ağ";
 import ToggleMagic from "./components/toggle-magic";
 import { dnsAction } from "./dns-actions";
 
@@ -74,10 +74,10 @@ export default function Page() {
       )}
       {data.access ? undefined : (
         <Notice>
-          Your permissions do not allow you to modify the DNS settings for this tailnet.
+          Your permissions do not allow you to modify the DNS settings for this güvenli ağ.
         </Notice>
       )}
-      <RenameTailnet isDisabled={isDisabled} name={data.baseDomain} />
+      <RenameGüvenli Ağ isDisabled={isDisabled} name={data.baseDomain} />
       <ManageNS isDisabled={isDisabled} nameservers={allNs} overrideLocalDns={data.overrideDns} />
       <ManageRecords isDisabled={isDisabled} records={data.extraRecords} />
       <ManageDomains
@@ -87,15 +87,15 @@ export default function Page() {
       />
 
       <div className="flex w-full flex-col sm:w-2/3">
-        <h1 className="mb-4 text-2xl font-medium">Magic DNS</h1>
+        <h1 className="mb-4 text-2xl font-medium">Akıllı DNS</h1>
         <p className="mb-4">
-          Automatically register domain names for each device on the tailnet. Devices will be
+          Automatically register domain names for each device on the güvenli ağ. Devices will be
           accessible at{" "}
           <Code>
             [device].
             {data.baseDomain}
           </Code>{" "}
-          when Magic DNS is enabled.
+          when Akıllı DNS is enabled.
         </p>
         <ToggleMagic isDisabled={isDisabled} isEnabled={data.magicDns} />
       </div>

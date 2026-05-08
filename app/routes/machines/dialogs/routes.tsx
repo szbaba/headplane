@@ -79,7 +79,7 @@ export default function Routes({ node, isOpen, setIsOpen }: RoutesProps) {
             </TableList.Item>
           ) : (
             <TableList.Item>
-              <p>Use as exit node</p>
+              <p>Çıkış düğümü olarak kullan</p>
               <Switch
                 defaultChecked={node.customRouting.exitApproved}
                 label="Enabled"

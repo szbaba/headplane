@@ -48,7 +48,7 @@ export default function AddRecord({ records }: Props) {
 
   return (
     <Dialog>
-      <Button>Add DNS record</Button>
+      <Button>DNS Kaydı Ekle</Button>
       <DialogPanel onSubmit={() => form.reset()}>
         <Title>DNS Kaydı Ekle</Title>
         <Text>Enter the domain and IP address for the new DNS record.</Text>

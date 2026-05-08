@@ -18,8 +18,8 @@ export default function ManageRecords({ records, isDisabled }: Props) {
     <div className="flex w-full flex-col sm:w-2/3">
       <h1 className="mb-4 text-2xl font-medium">DNS Kayıtları</h1>
       <p>
-        Headscale supports adding custom DNS records to your Tailnet. As of now, only <Code>A</Code>{" "}
-        and <Code>AAAA</Code> records are supported.{" "}
+        Headscale supports adding custom DNS records to your Güvenli Ağ. As of now, only <Code>A</Code>{" "}
+        ve <Code>AAAA</Code> kayıtları desteklenir.{" "}
         <Link external styled to="https://headscale.net/stable/ref/dns">
           Learn More
         </Link>
@@ -28,7 +28,7 @@ export default function ManageRecords({ records, isDisabled }: Props) {
         <TableList className="mb-8">
           {records.length === 0 ? (
             <TableList.Item>
-              <p className="mx-auto opacity-50">No DNS records found</p>
+              <p className="mx-auto opacity-50">Henüz DNS kaydı yok. Yukarıdaki "DNS Kaydı Ekle" butonuyla ilk kaydınızı oluşturun.</p>
             </TableList.Item>
           ) : (
             records.map((record) => (

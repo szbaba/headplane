@@ -15,7 +15,7 @@ export async function authKeysAction({ request, context }: Route.ActionArgs) {
   const canGenerateOwn = context.auth.can(principal, Capabilities.generate_own_authkeys);
 
   if (!canGenerateAny && !canGenerateOwn) {
-    throw data("You do not have permission to manage pre-auth keys", {
+    throw data("You do not have permission to manage pre-erişim anahtarıs", {
       status: 403,
     });
   }
@@ -28,7 +28,7 @@ export async function authKeysAction({ request, context }: Route.ActionArgs) {
     }
     const targetSubject = getOidcSubject(targetUser);
     if (principal.kind !== "oidc" || targetSubject !== principal.user.subject) {
-      throw data("You do not have permission to manage this user's pre-auth keys", {
+      throw data("You do not have permission to manage this user's pre-erişim anahtarıs", {
         status: 403,
       });
     }
@@ -115,7 +115,7 @@ export async function authKeysAction({ request, context }: Route.ActionArgs) {
 
       await checkSelfServiceOwnership(user);
       await api.expirePreAuthKey(user, { id: keyId, key } as unknown as PreAuthKey);
-      return data("Pre-auth key expired");
+      return data("Pre-erişim anahtarı expired");
     }
 
     default:

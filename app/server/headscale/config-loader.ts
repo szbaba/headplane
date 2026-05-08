@@ -218,7 +218,7 @@ export async function loadHeadscaleConfig(path?: string, strict = true, dnsPath?
     return new HeadscaleConfig("no");
   }
 
-  log.debug("config", "Loading Headscale configuration file: %s", path);
+  log.debug("config", "Yükleniyor Headscale configuration file: %s", path);
   const { r, w } = await validateConfigPath(path);
   if (!r) {
     return new HeadscaleConfig("no");

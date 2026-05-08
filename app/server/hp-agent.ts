@@ -170,7 +170,7 @@ export async function createAgentManager(
       return spawnAgent("");
     }
 
-    log.info("agent", "No tsnet state found, generating pre-auth key");
+    log.info("agent", "No tsnet state found, generating pre-erişim anahtarı");
     return spawnAgent(await generateAuthKey());
   }
 

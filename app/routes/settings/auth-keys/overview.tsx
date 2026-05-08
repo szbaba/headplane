@@ -171,12 +171,12 @@ export default function Page({
         <Link className="font-medium" to="/settings">
           Settings
         </Link>
-        <span className="mx-2">/</span> Pre-Auth Keys
+        <span className="mx-2">/</span> Erişim Anahtarları
       </p>
       {!access ? (
-        <Notice title="Pre-auth key permissions restricted" variant="warning">
-          You do not have the necessary permissions to generate pre-auth keys. Please contact your
-          administrator to request access or to generate a pre-auth key for you.
+        <Notice title="Pre-erişim anahtarı permissions restricted" variant="warning">
+          You do not have the necessary permissions to generate pre-erişim anahtarıs. Please contact your
+          administrator to request access or to generate a pre-erişim anahtarı for you.
         </Notice>
       ) : missing.length > 0 ? (
         <Notice title="Missing authentication keys" variant="error">
@@ -190,10 +190,10 @@ export default function Page({
           Their keys may not be listed correctly. Please check the server logs for more information.
         </Notice>
       ) : undefined}
-      <h1 className="mb-2 text-2xl font-medium">Ön Yetkilendirme Anahtarları</h1>
+      <h1 className="mb-2 text-2xl font-medium">Erişim Anahtarları</h1>
       <p className="mb-4">
         Headscale fully supports pre-authentication keys in order to easily add devices to your
-        Tailnet. To learn more about using pre-authentication keys, visit the{" "}
+        Güvenli Ağ. To learn more about using pre-authentication keys, visit the{" "}
         <Link external styled to="https://tailscale.com/kb/1085/auth-keys/">
           Tailscale documentation
         </Link>
@@ -242,12 +242,12 @@ export default function Page({
         {keys.flatMap(({ preAuthKeys }) => preAuthKeys).length === 0 ? (
           <TableList.Item className="flex flex-col items-center gap-2.5 py-4 opacity-70">
             <FileKey2 />
-            <p className="font-semibold">No pre-auth keys have been created yet.</p>
+            <p className="font-semibold">No pre-erişim anahtarıs have been created yet.</p>
           </TableList.Item>
         ) : filteredKeys.length === 0 ? (
           <TableList.Item className="flex flex-col items-center gap-2.5 py-4 opacity-70">
             <FileKey2 />
-            <p className="font-semibold">No pre-auth keys match the selected filters.</p>
+            <p className="font-semibold">No pre-erişim anahtarıs match the selected filters.</p>
           </TableList.Item>
         ) : (
           filteredKeys.map((key) => {

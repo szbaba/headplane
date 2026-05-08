@@ -80,7 +80,7 @@ function Panel(props: DialogPanelProps) {
         <div className="flex flex-col gap-4">{children}</div>
         <div className="mt-5 flex justify-end gap-3">
           {variant === "unactionable" ? (
-            <AlertDialog.Close render={<Button>Close</Button>} />
+            <AlertDialog.Close render={<Button>Kapat</Button>} />
           ) : (
             <>
               <AlertDialog.Close render={<Button>İptal</Button>} />

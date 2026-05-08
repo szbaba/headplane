@@ -140,7 +140,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         </Card>
       )}
       <Card variant="flat" className="max-w-2xl">
-        <Card.Title>Access your network via Tailscale</Card.Title>
+        <Card.Title>Tailscale ile ağınıza bağlanın</Card.Title>
         <Card.Text className="mt-1">
           You've successfully authenticated but don't have access to the dashboard. You can still
           connect to your Headscale network by installing Tailscale.

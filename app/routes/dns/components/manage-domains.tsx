@@ -34,7 +34,7 @@ export default function ManageDomains({ searchDomains, isDisabled, magic }: Prop
     <div className="flex w-full flex-col sm:w-2/3">
       <h1 className="mb-4 text-2xl font-medium">Arama Alanları</h1>
       <p className="mb-4">
-        Set custom DNS search domains for your Tailnet. When using Magic DNS, your tailnet domain is
+        Set custom DNS search domains for your Güvenli Ağ. When using Akıllı DNS, your güvenli ağ domain is
         used as the first search domain.
       </p>
       <DndContext

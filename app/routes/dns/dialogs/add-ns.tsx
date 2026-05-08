@@ -46,7 +46,7 @@ export default function AddNameserver({ nameservers }: Props) {
 
   return (
     <Dialog>
-      <Button>Add nameserver</Button>
+      <Button>İsim Sunucusu Ekle</Button>
       <DialogPanel>
         <Title className="mb-4">Add nameserver</Title>
         <input name="action_id" type="hidden" value="add_ns" />

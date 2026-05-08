@@ -14,7 +14,7 @@ export default function CreateUser({ isOidc, isDisabled }: CreateUserProps) {
     <Dialog>
       <Button disabled={isDisabled}>Add user</Button>
       <DialogPanel>
-        <Title>Create a Headscale user</Title>
+        <Title>Yeni Kullanıcı Oluştur</Title>
         <Text className="mb-6">
           This creates a new user in Headscale. The user will appear in the &ldquo;Unlinked
           Headscale Users&rdquo; section until they sign in

@@ -97,13 +97,13 @@ export default function Page({ loaderData: { access, writable, policy } }: Route
           <TabsTab value="diff">
             <div className="flex items-center gap-2">
               <Eye className="p-1" />
-              <span>Preview changes</span>
+              <span>Değişiklikleri Önizle</span>
             </div>
           </TabsTab>
           <TabsTab value="preview">
             <div className="flex items-center gap-2">
               <FlaskConical className="p-1" />
-              <span>Preview rules</span>
+              <span>Kuralları Önizle</span>
             </div>
           </TabsTab>
         </TabsList>
@@ -165,7 +165,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       <div className="flex flex-col gap-4">
         <Card className="max-w-2xl" variant="flat">
           <div className="flex items-center justify-between gap-4">
-            <Card.Title>ACL Policy Unavailable</Card.Title>
+            <Card.Title>Erişim Kuralları Kullanılamıyor</Card.Title>
             <AlertCircle className="mb-2 h-6 w-6 text-red-500" />
           </div>
           <Card.Text>

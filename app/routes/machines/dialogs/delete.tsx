@@ -20,7 +20,7 @@ export default function Delete({ machine, isOpen, setIsOpen }: DeleteProps) {
         <Title>Remove {machine.givenName}</Title>
         <Text>
           This machine will be permanently removed from your network. To re-add it, you will need to
-          reauthenticate to your tailnet from the device.
+          reauthenticate to your güvenli ağ from the device.
         </Text>
         <input name="action_id" type="hidden" value="delete" />
         <input name="node_id" type="hidden" value={machine.id} />

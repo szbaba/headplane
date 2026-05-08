@@ -118,7 +118,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           </Card>
         ) : undefined}
         <Card className="m-4 max-w-md sm:m-0">
-          <Card.Title>Welcome to Headplane</Card.Title>
+          <Card.Title>Corsecure Yönetim Paneli'ne Hoş Geldiniz</Card.Title>
           <Form method="POST">
             <Card.Text>
               Enter an API key to authenticate with Headplane. You can generate one by running{" "}
@@ -127,10 +127,10 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
             <Input
               className="mt-8 mb-2"
               required
-              label="API Key"
+              label="API Anahtarı"
               labelHidden
               name="api_key"
-              placeholder="API Key"
+              placeholder="API Anahtarı"
               type="password"
             />
             {actionData?.success === false ? (

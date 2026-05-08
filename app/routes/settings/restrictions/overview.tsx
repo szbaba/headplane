@@ -66,7 +66,7 @@ export default function Page({ loaderData: { access, writable, settings } }: Rou
         <h1 className="mt-4 mb-2 text-2xl font-medium">Kimlik Doğrulama Kısıtlamaları</h1>
         <p>
           Headscale supports restricting OIDC authentication to only allow certain email domains,
-          groups, or users to authenticate. This can be used to limit access to your Tailnet to only
+          groups, or users to authenticate. This can be used to limit access to your Güvenli Ağ to only
           certain users or groups and Headplane will also respect these settings when
           authenticating.{" "}
           <Link external styled to="https://headscale.net/stable/ref/oidc/#basic-configuration">

@@ -148,7 +148,7 @@ export default function MachineMenu({
           {isFullButton ? (
             <>
               <Cog className="h-5" />
-              <p>Machine Settings</p>
+              <p>Cihaz Ayarları</p>
             </>
           ) : (
             <Ellipsis className="h-5" />

@@ -10,18 +10,18 @@ interface Props {
   isDisabled: boolean;
 }
 
-export default function RenameTailnet({ name, isDisabled }: Props) {
+export default function RenameGüvenli Ağ({ name, isDisabled }: Props) {
   return (
     <div className="flex w-full flex-col gap-y-4 sm:w-2/3">
-      <h1 className="mb-2 text-2xl font-medium">Tailnet Adı</h1>
+      <h1 className="mb-2 text-2xl font-medium">Güvenli Ağ Adı</h1>
       <p>
-        This is the base domain name of your Tailnet. Devices are accessible at{" "}
-        <Code>[device].{name}</Code> when Magic DNS is enabled.
+        This is the base domain name of your Güvenli Ağ. Devices are accessible at{" "}
+        <Code>[device].{name}</Code> when Akıllı DNS is enabled.
       </p>
       <Input
         className="w-3/5 text-sm font-medium"
         readOnly
-        label="Tailnet name"
+        label="Güvenli Ağ name"
         labelHidden
         onFocus={(event) => {
           (event.target as HTMLInputElement).select();
@@ -29,18 +29,18 @@ export default function RenameTailnet({ name, isDisabled }: Props) {
         value={name}
       />
       <Dialog>
-        <Button disabled={isDisabled}>Rename Tailnet</Button>
+        <Button disabled={isDisabled}>Rename Güvenli Ağ</Button>
         <DialogPanel isDisabled={isDisabled}>
-          <Title>Rename Tailnet</Title>
+          <Title>Rename Güvenli Ağ</Title>
           <Text className="mb-8">
             Keep in mind that changing this can lead to all sorts of unexpected behavior and may
-            break existing devices in your tailnet.
+            break existing devices in your güvenli ağ.
           </Text>
-          <input name="action_id" type="hidden" value="rename_tailnet" />
+          <input name="action_id" type="hidden" value="rename_güvenli ağ" />
           <Input
             defaultValue={name}
             required
-            label="Tailnet name"
+            label="Güvenli Ağ name"
             name="new_name"
             placeholder="ts.net"
           />

@@ -24,7 +24,7 @@ export function ExitNodeTag({ isEnabled }: ExitNodeTagProps) {
       }
     >
       <Chip
-        text="Exit Node"
+        text="Çıkış Düğümü"
         className={cn("bg-blue-300 text-blue-900 dark:bg-blue-900 dark:text-blue-300")}
         rightIcon={isEnabled ? undefined : <Info className="h-full w-fit" />}
       />

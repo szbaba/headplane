@@ -11,11 +11,11 @@ interface Props {
 export default function Modal({ isEnabled, isDisabled }: Props) {
   return (
     <Dialog>
-      <Button disabled={isDisabled}>{isEnabled ? "Disable" : "Enable"} Magic DNS</Button>
+      <Button disabled={isDisabled}>{isEnabled ? "Disable" : "Enable"} Akıllı DNS</Button>
       <DialogPanel isDisabled={isDisabled}>
-        <Title>{isEnabled ? "Disable" : "Enable"} Magic DNS</Title>
+        <Title>{isEnabled ? "Disable" : "Enable"} Akıllı DNS</Title>
         <Text>
-          Devices will no longer be accessible via your tailnet domain. The search domain will also
+          Devices will no longer be accessible via your güvenli ağ domain. The search domain will also
           be disabled.
         </Text>
         <input type="hidden" name="action_id" value="toggle_magic" />

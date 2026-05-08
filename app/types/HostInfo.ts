@@ -128,7 +128,7 @@ export interface HostInfo {
   /** Home DERP region ID */
   HomeDERP?: number;
 
-  /** Opaque hash of the most recent list of tailnet services (indicates config updates) */
+  /** Opaque hash of the most recent list of güvenli ağ services (indicates config updates) */
   ServicesHash?: string;
 
   /** Geographical location data about the Tailscale host (optional) */

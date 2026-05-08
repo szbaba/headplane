@@ -66,7 +66,7 @@ export async function loader({ request, params, context }: Route.LoaderArgs) {
     return { hostname, username: undefined, offline: false, node: undefined };
   }
 
-  // The user must exist within Headscale to generate a pre-auth key
+  // The user must exist within Headscale to generate a pre-erişim anahtarı
   const users = await api.getUsers();
   const hsUser = findHeadscaleUserBySubject(users, principal.user.subject, principal.profile.email);
 
@@ -119,11 +119,11 @@ export default function Page({ loaderData }: Route.ComponentProps) {
       <div className="flex h-screen w-screen items-center justify-center bg-black">
         <Card className="w-screen" variant="flat">
           <div className="flex items-center justify-between gap-4">
-            <Card.Title>Node Offline</Card.Title>
+            <Card.Title>Cihaz Çevrimdışı</Card.Title>
             <WifiOff className="mb-2 h-6 w-6 text-red-500" />
           </div>
           <Card.Text>
-            <Code>{hostname}</Code> is not currently connected to the Tailnet.
+            <Code>{hostname}</Code> is not currently connected to the Güvenli Ağ.
           </Card.Text>
           <Button className="mt-8 w-full" onClick={() => window.location.reload()}>
             Retry Connection
@@ -156,7 +156,7 @@ function SSHConsole({
   useEffect(() => {
     let cancelled = false;
 
-    console.log("[ssh] Loading WASM factory");
+    console.log("[ssh] Yükleniyor WASM factory");
     loadHeadplaneWASM().then((create) => {
       console.log("[ssh] Factory loaded, creating IPN", create);
 
@@ -164,7 +164,7 @@ function SSHConsole({
         return;
       }
 
-      setStatus("Joining Tailnet…");
+      setStatus("Joining Güvenli Ağ…");
       const instance = create({
         controlURL: node.controlURL,
         preAuthKey: node.preAuthKey,

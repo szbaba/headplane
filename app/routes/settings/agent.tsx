@@ -45,7 +45,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
   if (!loaderData.enabled) {
     return (
       <div className="flex max-w-(--breakpoint-lg) flex-col gap-8">
-        <Title>Headplane Agent</Title>
+        <Title>Yönetim Ajanı</Title>
         <Notice title="Agent Not Enabled">
           The Headplane Agent is not enabled. To learn how to set up the agent, visit the{" "}
           <Link external styled to="https://headplane.dev/docs/agent">
@@ -61,10 +61,10 @@ export default function Page({ loaderData }: Route.ComponentProps) {
   return (
     <div className="flex max-w-(--breakpoint-lg) flex-col gap-8">
       <div className="flex w-full flex-col sm:w-2/3">
-        <Title>Headplane Agent</Title>
+        <Title>Yönetim Ajanı</Title>
         <Text>
           The Headplane Agent syncs node information like OS version and connectivity details from
-          your Tailnet.
+          your Güvenli Ağ.
         </Text>
       </div>
 
