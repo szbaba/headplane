@@ -1,5 +1,6 @@
 import { ChevronDown, Copy } from "lucide-react";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import Chip from "~/components/chip";
 import Link from "~/components/link";
@@ -39,6 +40,7 @@ export default function MachineRow({
   existingTags,
   supportsNodeOwnerChange,
 }: Props) {
+  const { t } = useTranslation();
   const uiTags = useMemo(() => uiTagsForNode(node, isAgent), [node, isAgent]);
 
   const ipOptions = useMemo(() => {
@@ -63,7 +65,7 @@ export default function MachineRow({
             {node.givenName}
           </p>
           <p className="text-sm opacity-50">
-            {node.user ? getUserDisplayName(node.user) : "Tag-owned"}
+            {node.user ? getUserDisplayName(node.user) : t("machines.tagOwned")}
           </p>
           <div className="mt-1.5 flex flex-wrap gap-1">
             {mapTagsToComponents(node, uiTags)}
@@ -86,7 +88,7 @@ export default function MachineRow({
                   key={ip}
                   onClick={async () => {
                     await navigator.clipboard.writeText(ip);
-                    toast("Copied IP address to clipboard");
+                    toast(t("machines.copiedIP"));
                   }}
                 >
                   <div
@@ -112,7 +114,7 @@ export default function MachineRow({
               </p>
             </>
           ) : (
-            <p className="text-sm opacity-50">Unknown</p>
+            <p className="text-sm opacity-50">{t("common.unknown")}</p>
           )}
         </td>
       ) : undefined}
@@ -125,7 +127,7 @@ export default function MachineRow({
               suppressHydrationWarning
             >
               {node.online && !node.expired
-                ? "Connected"
+                ? t("machines.connected")
                 : new Date(node.lastSeen).toLocaleString()}
             </p>
             {!(node.online && !node.expired) && (

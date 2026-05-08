@@ -1,6 +1,9 @@
 import { createHash } from "node:crypto";
 
+import { useTranslation } from "react-i18next";
+
 import PageError from "~/components/page-error";
+import i18n from "~/i18n/config";
 import { nodesResource, usersResource } from "~/server/headscale/live-store";
 import { Capabilities, Roles } from "~/server/web/roles";
 import type { Role } from "~/server/web/roles";
@@ -38,9 +41,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
   const principal = await context.auth.require(request);
   const check = await context.auth.can(principal, Capabilities.read_users);
   if (!check) {
-    throw new Error(
-      "You do not have permission to view this page. Please contact your administrator.",
-    );
+    throw new Error(i18n.t("users.noPermission"));
   }
 
   const writablePermission = await context.auth.can(principal, Capabilities.write_users);
@@ -64,8 +65,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
     apiUsers = usersSnap.data;
   } catch (error) {
     log.warn("api", "Failed to fetch Headscale API data: %s", String(error));
-    apiError =
-      "Could not connect to the Headscale API. Headscale user data and machine information are unavailable.";
+    apiError = i18n.t("users.apiError");
   }
 
   const useGravatar = context.config.oidc?.profile_picture_source === "gravatar";
@@ -150,10 +150,11 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 export const action = userAction;
 
 export default function Page({ loaderData }: Route.ComponentProps) {
+  const { t } = useTranslation();
   return (
     <>
-      <h1 className="mb-1.5 text-2xl font-medium">Kullanıcılar</h1>
-      <p className="text-md mb-8">Manage the users in your network and their permissions.</p>
+      <h1 className="mb-1.5 text-2xl font-medium">{t("users.title")}</h1>
+      <p className="text-md mb-8">{t("users.subtitle")}</p>
       <ManageBanner isDisabled={!loaderData.writable} oidc={loaderData.oidc} />
 
       {loaderData.apiError && (
@@ -169,22 +170,20 @@ export default function Page({ loaderData }: Route.ComponentProps) {
       )}
 
       <section>
-        <h2 className="mb-3 text-lg font-medium">Yönetim Paneli Kullanıcıları</h2>
+        <h2 className="mb-3 text-lg font-medium">{t("users.headplaneUsers")}</h2>
         {loaderData.headplaneUsers.length === 0 ? (
-          <p className="text-sm text-mist-600 dark:text-mist-300">
-            No users have signed into Headplane yet.
-          </p>
+          <p className="text-sm text-mist-600 dark:text-mist-300">{t("users.noHeadplaneUsers")}</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px] table-auto rounded-lg">
               <thead className="text-mist-600 dark:text-mist-300">
                 <tr className="px-0.5 text-left">
-                  <th className="pb-2 text-xs font-bold uppercase">Kullanıcı</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Role</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Last Login</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Durum</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.userColumn")}</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.roleColumn")}</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.lastLoginColumn")}</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.statusColumn")}</th>
                   <th className="w-12 pb-2">
-                    <span className="sr-only">Actions</span>
+                    <span className="sr-only">{t("users.actionsScreenReader")}</span>
                   </th>
                 </tr>
               </thead>
@@ -211,20 +210,19 @@ export default function Page({ loaderData }: Route.ComponentProps) {
 
       {!loaderData.apiError && loaderData.unlinkedHeadscaleUsers.length > 0 && (
         <section className="mt-10">
-          <h2 className="mb-1 text-lg font-medium">Bağlanmamış Headscale Kullanıcıları</h2>
+          <h2 className="mb-1 text-lg font-medium">{t("users.unlinkedHeadscale")}</h2>
           <p className="mb-3 text-sm text-mist-600 dark:text-mist-300">
-            These Headscale users are not linked to a Headplane account and cannot be managed
-            through Headplane.
+            {t("users.unlinkedHeadscaleDesc")}
           </p>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px] table-auto rounded-lg">
               <thead className="text-mist-600 dark:text-mist-300">
                 <tr className="px-0.5 text-left">
-                  <th className="pb-2 text-xs font-bold uppercase">Kullanıcı</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Created At</th>
-                  <th className="pb-2 text-xs font-bold uppercase">Durum</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.userColumn")}</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.createdAtColumn")}</th>
+                  <th className="pb-2 text-xs font-bold uppercase">{t("users.statusColumn")}</th>
                   <th className="w-12 pb-2">
-                    <span className="sr-only">Actions</span>
+                    <span className="sr-only">{t("users.actionsScreenReader")}</span>
                   </th>
                 </tr>
               </thead>
@@ -247,5 +245,5 @@ export default function Page({ loaderData }: Route.ComponentProps) {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  return <PageError error={error} page="Users" />;
+  return <PageError error={error} page={i18n.t("users.errorPageName")} />;
 }

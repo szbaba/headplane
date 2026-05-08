@@ -1,5 +1,6 @@
 import { FileKey2 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Code from "~/components/code";
 import Link from "~/components/link";
@@ -105,6 +106,7 @@ type Status = "all" | "active" | "expired" | "reusable" | "ephemeral";
 export default function Page({
   loaderData: { keys, missing, users, url, access, selfServiceOnly, currentSubject },
 }: Route.ComponentProps) {
+  const { t } = useTranslation();
   const [selectedUser, setSelectedUser] = useState("__headplane_all");
   const [status, setStatus] = useState<Status>("active");
   const isDisabled = !access || keys.flatMap(({ preAuthKeys }) => preAuthKeys).length === 0;
@@ -169,34 +171,33 @@ export default function Page({
     <div className="flex flex-col md:w-2/3">
       <p className="text-md mb-8">
         <Link className="font-medium" to="/settings">
-          Settings
+          {t("settings.breadcrumb")}
         </Link>
-        <span className="mx-2">/</span> Erişim Anahtarları
+        <span className="mx-2">/</span> {t("authKeys.title")}
       </p>
       {!access ? (
-        <Notice title="Pre-erişim anahtarı permissions restricted" variant="warning">
-          You do not have the necessary permissions to generate pre-erişim anahtarıs. Please contact your
-          administrator to request access or to generate a pre-erişim anahtarı for you.
+        <Notice title={t("authKeys.permissionsRestricted")} variant="warning">
+          {t("authKeys.noPermission")}
         </Notice>
       ) : missing.length > 0 ? (
-        <Notice title="Missing authentication keys" variant="error">
-          An error occurred while fetching the authentication keys for the following users:{" "}
+        <Notice title={t("authKeys.missing")} variant="error">
+          {t("authKeys.missingPrefix")}
           {missing.map(({ user }, index) => (
             <>
               <Code key={user.id}>{getUserDisplayName(user)}</Code>
               {index < missing.length - 1 ? ", " : ". "}
             </>
           ))}
-          Their keys may not be listed correctly. Please check the server logs for more information.
+          {t("authKeys.missingSuffix")}
         </Notice>
       ) : undefined}
-      <h1 className="mb-2 text-2xl font-medium">Erişim Anahtarları</h1>
+      <h1 className="mb-2 text-2xl font-medium">{t("authKeys.title")}</h1>
       <p className="mb-4">
-        Headscale fully supports pre-authentication keys in order to easily add devices to your
-        Tailnet. To learn more about using pre-authentication keys, visit the{" "}
+        {t("authKeys.intro")}
         <Link external styled to="https://tailscale.com/kb/1085/auth-keys/">
-          Tailscale documentation
+          {t("authKeys.introLink")}
         </Link>
+        {t("authKeys.introTail")}
       </p>
       <AddAuthKey
         currentSubject={currentSubject}
@@ -209,16 +210,16 @@ export default function Page({
           className="w-full"
           defaultValue="__headplane_all"
           disabled={isDisabled}
-          label="User"
+          label={t("authKeys.userLabel")}
           onValueChange={(value) => setSelectedUser(value ?? "")}
-          placeholder="Select a user"
+          placeholder={t("authKeys.selectUser")}
           items={[
-            { value: "__headplane_all", label: "All" },
+            { value: "__headplane_all", label: t("authKeys.filterAll") },
             ...keys
               .filter((k): k is { user: User; preAuthKeys: PreAuthKey[] } => k.user !== null)
               .map(({ user }) => ({ value: user.id, label: getUserDisplayName(user) })),
             ...(keys.some(({ user }) => user === null)
-              ? [{ value: "__headplane_tag_only", label: "Tag Only" }]
+              ? [{ value: "__headplane_tag_only", label: t("authKeys.tagOnly") }]
               : []),
           ]}
         />
@@ -226,15 +227,15 @@ export default function Page({
           className="w-full"
           defaultValue="active"
           disabled={isDisabled}
-          label="Status"
+          label={t("authKeys.statusLabel")}
           onValueChange={(value) => setStatus((value ?? "active") as Status)}
-          placeholder="Select a status"
+          placeholder={t("machines.selectStatus")}
           items={[
-            { value: "all", label: "All" },
-            { value: "active", label: "Active" },
-            { value: "expired", label: "Used/Expired" },
-            { value: "reusable", label: "Reusable" },
-            { value: "ephemeral", label: "Ephemeral" },
+            { value: "all", label: t("authKeys.filterAll") },
+            { value: "active", label: t("authKeys.filterActive") },
+            { value: "expired", label: t("authKeys.filterExpired") },
+            { value: "reusable", label: t("authKeys.filterReusable") },
+            { value: "ephemeral", label: t("authKeys.filterEphemeral") },
           ]}
         />
       </div>
@@ -242,12 +243,12 @@ export default function Page({
         {keys.flatMap(({ preAuthKeys }) => preAuthKeys).length === 0 ? (
           <TableList.Item className="flex flex-col items-center gap-2.5 py-4 opacity-70">
             <FileKey2 />
-            <p className="font-semibold">No pre-erişim anahtarıs have been created yet.</p>
+            <p className="font-semibold">{t("authKeys.noKeysCreated")}</p>
           </TableList.Item>
         ) : filteredKeys.length === 0 ? (
           <TableList.Item className="flex flex-col items-center gap-2.5 py-4 opacity-70">
             <FileKey2 />
-            <p className="font-semibold">No pre-erişim anahtarıs match the selected filters.</p>
+            <p className="font-semibold">{t("authKeys.noMatchFilters")}</p>
           </TableList.Item>
         ) : (
           filteredKeys.map((key) => {

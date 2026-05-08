@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useFetcher } from "react-router";
 
 import Button from "~/components/button";
@@ -40,6 +41,7 @@ export default function AddAuthKey({
   selfServiceOnly,
   currentSubject,
 }: AddAuthKeyProps) {
+  const { t } = useTranslation();
   const fetcher = useFetcher();
   const submittingRef = useRef(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -89,14 +91,14 @@ export default function AddAuthKey({
       }}
     >
       <Button className="my-4" onClick={() => setIsOpen(true)}>
-        Create pre-erişim anahtarı
+        {t("authKeys.createKey")}
       </Button>
       {createdKey ? (
         <DialogPanel variant="unactionable">
-          <Title>Pre-erişim anahtarı created</Title>
-          <Text>Copy this key now. You will not be able to see the full key again.</Text>
+          <Title>{t("authKeys.createdTitle")}</Title>
+          <Text>{t("authKeys.createdWarning")}</Text>
           <CodeBlock className="mt-4">{createdKey}</CodeBlock>
-          <Text className="mt-4 text-sm">To register a device with this key:</Text>
+          <Text className="mt-4 text-sm">{t("authKeys.registerHint")}</Text>
           <CodeBlock className="mt-1">
             {`tailscale up --login-server=${url} --authkey ${createdKey}`}
           </CodeBlock>
@@ -116,17 +118,17 @@ export default function AddAuthKey({
           }}
           isDisabled={fetcher.state !== "idle" || !canSubmit}
         >
-          <Title>Generate erişim anahtarı</Title>
+          <Title>{t("authKeys.generateKey")}</Title>
 
           {!selfServiceOnly && (
             <div className="mb-4 flex items-center justify-between gap-2">
               <div>
-                <Text className="font-semibold">Tag-only key</Text>
-                <Text className="text-sm">Create a key owned by ACL tags instead of a user.</Text>
+                <Text className="font-semibold">{t("authKeys.tagOnlyKey")}</Text>
+                <Text className="text-sm">{t("authKeys.tagOnlyKeyDesc")}</Text>
               </div>
               <Switch
                 defaultChecked={tagOnly}
-                label="Tag-only"
+                label={t("authKeys.tagOnlyKey")}
                 onCheckedChange={() => setTagOnly(!tagOnly)}
               />
             </div>
@@ -136,15 +138,13 @@ export default function AddAuthKey({
             <Select
               className="mb-2"
               description={
-                selfServiceOnly
-                  ? "You can only create keys for your own user."
-                  : "Machines will belong to this user when they authenticate."
+                selfServiceOnly ? t("authKeys.selfServiceDesc") : t("authKeys.userFieldDesc")
               }
               disabled={selfServiceOnly}
               required
-              label="User"
+              label={t("authKeys.userField")}
               onValueChange={(value) => setUserId(value)}
-              placeholder="Select a user"
+              placeholder={t("authKeys.selectUser")}
               value={userId}
               items={availableUsers.map((user) => ({
                 value: user.id,
@@ -155,47 +155,46 @@ export default function AddAuthKey({
 
           <Input
             className="mb-2"
-            description="Comma-separated tags (e.g. server, prod). The tag: prefix is added automatically."
+            description={t("authKeys.aclTagsDesc")}
             required={tagOnly}
-            label="ACL Tags"
+            label={t("authKeys.aclTags")}
             onChange={(value) => setTags(value)}
-            placeholder="server, prod"
+            placeholder={t("authKeys.aclTagsPlaceholder")}
             value={tags}
           />
           <NumberInput
             defaultValue={90}
-            description="Set this key to expire after a certain number of days."
+            description={t("authKeys.expirationDesc")}
             required
-            label="Key Expiration"
+            label={t("authKeys.expiration")}
             max={365_000}
             min={1}
             name="expiry"
           />
           <div className="mt-6 flex items-center justify-between gap-2">
             <div>
-              <Text className="font-semibold">Reusable</Text>
-              <Text className="text-sm">Use this key to authenticate more than one device.</Text>
+              <Text className="font-semibold">{t("authKeys.reusable")}</Text>
+              <Text className="text-sm">{t("authKeys.reusableDesc")}</Text>
             </div>
             <Switch
               defaultChecked={reusable}
-              label="Reusable"
+              label={t("authKeys.reusable")}
               onCheckedChange={() => setReusable(!reusable)}
             />
           </div>
           <div className="mt-6 flex items-center justify-between gap-2">
             <div>
-              <Text className="font-semibold">Ephemeral</Text>
+              <Text className="font-semibold">{t("authKeys.ephemeral")}</Text>
               <Text className="text-sm">
-                Devices authenticated with this key will be automatically removed once they go
-                offline.{" "}
+                {t("authKeys.ephemeralDesc")}
                 <Link external styled to="https://tailscale.com/kb/1111/ephemeral-nodes">
-                  Learn more
+                  {t("common.learnMore")}
                 </Link>
               </Text>
             </div>
             <Switch
               defaultChecked={ephemeral}
-              label="Ephemeral"
+              label={t("authKeys.ephemeral")}
               onCheckedChange={() => setEphemeral(!ephemeral)}
             />
           </div>

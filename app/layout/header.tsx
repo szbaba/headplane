@@ -11,8 +11,10 @@ import {
   Sun,
   Users,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { NavLink, unstable_useRoute as useRoute, useLocation, useSubmit } from "react-router";
 
+import LanguageSwitcher from "~/components/language-switcher";
 import Link from "~/components/link";
 import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from "~/components/menu";
 import corsecureLogo from "~/logo/corsecure.png";
@@ -39,24 +41,25 @@ export interface HeaderProps {
 }
 
 const tabs = [
-  { to: "/machines", icon: Server, label: "Cihazlar", key: "machines" },
-  { to: "/users", icon: Users, label: "Kullanıcılar", key: "users" },
-  { to: "/acls", icon: Lock, label: "Erişim Kontrolü", key: "policy" },
-  { to: "/dns", icon: Globe, label: "DNS", key: "dns" },
-  { to: "/settings", icon: Settings, label: "Ayarlar", key: "settings" },
+  { to: "/machines", icon: Server, labelKey: "nav.machines", key: "machines" },
+  { to: "/users", icon: Users, labelKey: "nav.users", key: "users" },
+  { to: "/acls", icon: Lock, labelKey: "nav.acls", key: "policy" },
+  { to: "/dns", icon: Globe, labelKey: "nav.dns", key: "dns" },
+  { to: "/settings", icon: Settings, labelKey: "nav.settings", key: "settings" },
 ] as const;
 
 const colorSchemes = [
-  { value: "system", label: "Sistem", icon: Monitor },
-  { value: "light", label: "Açık", icon: Sun },
-  { value: "dark", label: "Koyu", icon: Moon },
+  { value: "system", labelKey: "header.colorSystem", icon: Monitor },
+  { value: "light", labelKey: "header.colorLight", icon: Sun },
+  { value: "dark", labelKey: "header.colorDark", icon: Moon },
 ] as const satisfies ReadonlyArray<{
   value: ColorScheme;
-  label: string;
+  labelKey: string;
   icon: typeof Monitor;
 }>;
 
 export default function Header({ user, access, configAvailable }: HeaderProps) {
+  const { t } = useTranslation();
   const submit = useSubmit();
   const showTabs = access.ui;
   const rootRoute = useRoute("root");
@@ -77,12 +80,8 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
       <div className="container flex items-center gap-x-4 py-4">
         <div className="flex min-w-0 items-center gap-x-4">
           <div className="flex items-center gap-x-2">
-            <img
-              src={corsecureLogo}
-              alt="Corsecure Yönetim Paneli"
-              className="size-8 rounded-md"
-            />
-            <h1 className="text-2xl font-semibold">Corsecure</h1>
+            <img src={corsecureLogo} alt={t("header.altText")} className="size-8 rounded-md" />
+            <h1 className="text-2xl font-semibold">{t("header.brand")}</h1>
           </div>
           {showTabs && (
             <nav className="hidden items-center gap-x-2 overflow-x-auto p-1 text-sm font-medium md:flex">
@@ -108,14 +107,15 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                     to={tab.to}
                   >
                     <tab.icon className="w-4" />
-                    {tab.label}
+                    {t(tab.labelKey)}
                   </NavLink>
                 );
               })}
             </nav>
           )}
         </div>
-        <div className="ml-auto grid shrink-0 grid-cols-2 gap-x-4">
+        <div className="ml-auto flex shrink-0 items-center gap-x-3">
+          <LanguageSwitcher />
           <Menu>
             <MenuTrigger className="size-8 rounded-full p-1">
               <CircleQuestionMark className="w-5" />
@@ -123,17 +123,17 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
             <MenuContent align="end">
               <MenuItem>
                 <Link external to="https://corsecure.net/docs">
-                  Belgeler
+                  {t("header.docs")}
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link external to="https://corsecure.net">
-                  Corsecure
+                  {t("header.brand")}
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link external to="https://tailscale.com/download">
-                  Uygulamayı İndir
+                  {t("header.downloadApp")}
                 </Link>
               </MenuItem>
             </MenuContent>
@@ -151,7 +151,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                 <div className="text-mist-900 dark:text-mist-50">
                   {user.subject === "api_key" ? (
                     <>
-                      <p className="font-bold">API Anahtarı</p>
+                      <p className="font-bold">{t("header.apiKey")}</p>
                       <p>{user.name}</p>
                     </>
                   ) : (
@@ -163,7 +163,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                 </div>
               </MenuItem>
               <MenuSeparator />
-              {colorSchemes.map(({ value, label, icon: Icon }) => (
+              {colorSchemes.map(({ value, labelKey, icon: Icon }) => (
                 <MenuItem
                   key={value}
                   onClick={() =>
@@ -175,7 +175,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                 >
                   <div className="flex items-center gap-x-2">
                     <Icon className="size-4" />
-                    <span className="flex-1">{label}</span>
+                    <span className="flex-1">{t(labelKey)}</span>
                     {currentColorScheme === value && <Check className="size-4" />}
                   </div>
                 </MenuItem>
@@ -185,7 +185,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                 variant="danger"
                 onClick={() => submit({}, { action: "/logout", method: "POST" })}
               >
-                Oturumu Kapat
+                {t("header.logout")}
               </MenuItem>
             </MenuContent>
           </Menu>
@@ -216,7 +216,7 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
                   to={tab.to}
                 >
                   <tab.icon className="w-4" />
-                  {tab.label}
+                  {t(tab.labelKey)}
                 </NavLink>
               );
             })}

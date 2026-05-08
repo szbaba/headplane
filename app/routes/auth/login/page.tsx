@@ -1,5 +1,6 @@
 import { AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Form, Link as RouterLink, redirect, useSearchParams } from "react-router";
 
 import Button from "~/components/button";
@@ -50,6 +51,7 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 export const action = loginAction;
 
 export default function Page({ loaderData, actionData }: Route.ComponentProps) {
+  const { t } = useTranslation();
   const { isCookieSecureEnabled, isOidcConnectorEnabled, oidcErrorCodes, urlState } = loaderData;
 
   const [showCookieWarning, setShowCookieWarning] = useState(false);
@@ -99,38 +101,38 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
         ) : showCookieWarning ? (
           <Card className="m-4 mb-4 max-w-md border border-red-500 sm:m-0 sm:mb-4">
             <div className="flex items-center justify-between gap-4">
-              <Card.Title className="text-red-500">Configuration Issue</Card.Title>
+              <Card.Title className="text-red-500">{t("login.configIssueTitle")}</Card.Title>
               <AlertCircle className="mb-2 h-6 w-6 text-red-500" />
             </div>
             {showCookieWarning ? (
               <Card.Text className="text-sm">
-                Headplane is configured to use secure cookies, but this site is being served over an
-                insecure connection and login will not work correctly.{" "}
+                {t("login.cookieWarning")}
                 <Link
                   external
                   styled
                   to="https://headplane.net/configuration/common-issues#issue-logging-in-does-not-do-anything"
                 >
-                  Learn more.
+                  {t("login.cookieWarningLearn")}
                 </Link>
               </Card.Text>
             ) : undefined}
           </Card>
         ) : undefined}
         <Card className="m-4 max-w-md sm:m-0">
-          <Card.Title>Corsecure Yönetim Paneli'ne Hoş Geldiniz</Card.Title>
+          <Card.Title>{t("login.welcomeTitle")}</Card.Title>
           <Form method="POST">
             <Card.Text>
-              Enter an API key to authenticate with Headplane. You can generate one by running{" "}
-              <Code>headscale apikeys create</Code> in your terminal.
+              {t("login.apiKeyPrompt")}
+              <Code>{t("login.apiKeyPromptCmd")}</Code>
+              {t("login.apiKeyPromptTail")}
             </Card.Text>
             <Input
               className="mt-8 mb-2"
               required
-              label="API Anahtarı"
+              label={t("login.apiKey")}
               labelHidden
               name="api_key"
-              placeholder="API Anahtarı"
+              placeholder={t("login.apiKeyPlaceholder")}
               type="password"
             />
             {actionData?.success === false ? (
@@ -139,13 +141,13 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
               </Card.Text>
             ) : undefined}
             <Button className="w-full" type="submit" variant="heavy">
-              Sign In
+              {t("login.signIn")}
             </Button>
           </Form>
           {isOidcConnectorEnabled ? (
             <RouterLink to="/oidc/start" prefetch="none" reloadDocument>
               <Button className="mt-2 w-full" disabled={oidcErrorCodes.length > 0} variant="light">
-                Single Sign-On
+                {t("login.sso")}
               </Button>
             </RouterLink>
           ) : undefined}

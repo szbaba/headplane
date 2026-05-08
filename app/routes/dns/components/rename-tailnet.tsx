@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import Button from "~/components/button";
 import Code from "~/components/code";
 import Dialog, { DialogPanel } from "~/components/dialog";
@@ -11,17 +13,19 @@ interface Props {
 }
 
 export default function RenameTailnet({ name, isDisabled }: Props) {
+  const { t } = useTranslation();
   return (
     <div className="flex w-full flex-col gap-y-4 sm:w-2/3">
-      <h1 className="mb-2 text-2xl font-medium">Tailnet Adı</h1>
+      <h1 className="mb-2 text-2xl font-medium">{t("dns.tailnetName")}</h1>
       <p>
-        This is the base domain name of your Tailnet. Devices are accessible at{" "}
-        <Code>[device].{name}</Code> when Akıllı DNS is enabled.
+        {t("dns.tailnetIntroPre")}
+        <Code>[device].{name}</Code>
+        {t("dns.tailnetIntroPost")}
       </p>
       <Input
         className="w-3/5 text-sm font-medium"
         readOnly
-        label="Tailnet name"
+        label={t("dns.tailnetNameLabel")}
         labelHidden
         onFocus={(event) => {
           (event.target as HTMLInputElement).select();
@@ -29,20 +33,17 @@ export default function RenameTailnet({ name, isDisabled }: Props) {
         value={name}
       />
       <Dialog>
-        <Button disabled={isDisabled}>Rename Tailnet</Button>
+        <Button disabled={isDisabled}>{t("dns.renameTailnet")}</Button>
         <DialogPanel isDisabled={isDisabled}>
-          <Title>Rename Tailnet</Title>
-          <Text className="mb-8">
-            Keep in mind that changing this can lead to all sorts of unexpected behavior and may
-            break existing devices in your tailnet.
-          </Text>
+          <Title>{t("dns.renameTailnet")}</Title>
+          <Text className="mb-8">{t("dns.renameTailnetWarn")}</Text>
           <input name="action_id" type="hidden" value="rename_tailnet" />
           <Input
             defaultValue={name}
             required
-            label="Tailnet name"
+            label={t("dns.tailnetNameLabel")}
             name="new_name"
-            placeholder="ts.net"
+            placeholder={t("dns.tailnetNamePlaceholder")}
           />
         </DialogPanel>
       </Dialog>
