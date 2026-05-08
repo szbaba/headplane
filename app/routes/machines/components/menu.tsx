@@ -1,5 +1,6 @@
 import { Cog, Ellipsis, SquareTerminal } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Button from "~/components/button";
 import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from "~/components/menu";
@@ -35,6 +36,7 @@ export default function MachineMenu({
   existingTags,
   supportsNodeOwnerChange,
 }: MenuProps) {
+  const { t } = useTranslation();
   const [modal, setModal] = useState<Modal>(null);
   const supportsTailscaleSSH = node.hostInfo?.sshHostKeys && node.hostInfo?.sshHostKeys.length > 0;
 
@@ -148,25 +150,25 @@ export default function MachineMenu({
           {isFullButton ? (
             <>
               <Cog className="h-5" />
-              <p>Cihaz Ayarları</p>
+              <p>{t("machinesDialog.machineSettings")}</p>
             </>
           ) : (
             <Ellipsis className="h-5" />
           )}
         </MenuTrigger>
         <MenuContent>
-          <MenuItem onClick={() => setModal("rename")}>Cihaz Adını Düzenle</MenuItem>
-          <MenuItem onClick={() => setModal("routes")}>Yönlendirme Ayarlarını Düzenle</MenuItem>
-          <MenuItem onClick={() => setModal("tags")}>ACL Etiketlerini Düzenle</MenuItem>
+          <MenuItem onClick={() => setModal("rename")}>{t("machinesDialog.menuRename")}</MenuItem>
+          <MenuItem onClick={() => setModal("routes")}>{t("machinesDialog.menuRoutes")}</MenuItem>
+          <MenuItem onClick={() => setModal("tags")}>{t("machinesDialog.menuTags")}</MenuItem>
           {supportsNodeOwnerChange && (
-            <MenuItem onClick={() => setModal("move")}>Change owner</MenuItem>
+            <MenuItem onClick={() => setModal("move")}>{t("machinesDialog.menuMove")}</MenuItem>
           )}
           <MenuSeparator />
           <MenuItem variant="danger" disabled={node.expired} onClick={() => setModal("expire")}>
-            Expire
+            {t("machinesDialog.menuExpire")}
           </MenuItem>
           <MenuItem variant="danger" onClick={() => setModal("remove")}>
-            Remove
+            {t("machinesDialog.menuRemove")}
           </MenuItem>
         </MenuContent>
       </Menu>

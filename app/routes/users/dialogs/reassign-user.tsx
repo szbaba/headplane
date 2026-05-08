@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import Dialog, { DialogPanel } from "~/components/dialog";
 import Link from "~/components/link";
 import Notice from "~/components/notice";
@@ -15,6 +17,28 @@ interface ReassignProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
+function useRoleMap() {
+  const { t } = useTranslation();
+  return (role: string) => {
+    switch (role) {
+      case "admin":
+        return { name: t("users.roleAdmin"), desc: t("users.roleAdminDesc") };
+      case "network_admin":
+        return { name: t("users.roleNetworkAdmin"), desc: t("users.roleNetworkAdminDesc") };
+      case "it_admin":
+        return { name: t("users.roleITAdmin"), desc: t("users.roleITAdminDesc") };
+      case "auditor":
+        return { name: t("users.roleAuditor"), desc: t("users.roleAuditorDesc") };
+      case "viewer":
+        return { name: t("users.roleViewer"), desc: t("users.roleViewerDesc") };
+      case "member":
+        return { name: t("users.roleMember"), desc: t("users.roleMemberDesc") };
+      default:
+        return { name: role, desc: t("users.roleNoDesc") };
+    }
+  };
+}
+
 export default function ReassignUser({
   userId,
   displayName,
@@ -22,24 +46,30 @@ export default function ReassignUser({
   isOpen,
   setIsOpen,
 }: ReassignProps) {
+  const { t } = useTranslation();
+  const mapRoleToName = useRoleMap();
   return (
     <Dialog isOpen={isOpen} onOpenChange={setIsOpen}>
       <DialogPanel variant={role === "owner" ? "unactionable" : "normal"}>
-        <Title>Change role for {displayName}?</Title>
+        <Title>{t("users.changeRole", { name: displayName })}</Title>
         <Text className="mb-6">
-          Roles control what the user can access in Headplane. Each role grants a specific set of
-          capabilities.{" "}
+          {t("users.rolesIntro")}
           <Link external styled to="https://tailscale.com/kb/1138/user-roles">
-            Learn More
+            {t("common.learnMore")}
           </Link>
         </Text>
         {role === "owner" ? (
-          <Notice>The Tailnet owner cannot be reassigned.</Notice>
+          <Notice>{t("users.ownerCannotReassign")}</Notice>
         ) : (
           <>
             <input name="action_id" type="hidden" value="reassign_user" />
             <input name="user_id" type="hidden" value={userId} />
-            <RadioGroup className="gap-4" defaultValue={role} label="Role" name="new_role">
+            <RadioGroup
+              className="gap-4"
+              defaultValue={role}
+              label={t("users.role")}
+              name="new_role"
+            >
               {Object.keys(Roles)
                 .filter((r) => r !== "owner")
                 .map((r) => {
@@ -59,44 +89,4 @@ export default function ReassignUser({
       </DialogPanel>
     </Dialog>
   );
-}
-
-function mapRoleToName(role: string) {
-  switch (role) {
-    case "admin":
-      return {
-        name: "Admin",
-        desc: "Can view the admin console, manage network, machine, and user settings.",
-      };
-    case "network_admin":
-      return {
-        name: "Network Admin",
-        desc: "Can view the admin console and manage ACLs and network settings. Cannot manage machines or users.",
-      };
-    case "it_admin":
-      return {
-        name: "IT Admin",
-        desc: "Can view the admin console and manage machines and users. Cannot manage ACLs or network settings.",
-      };
-    case "auditor":
-      return {
-        name: "Auditor",
-        desc: "Can view the admin console.",
-      };
-    case "viewer":
-      return {
-        name: "Viewer",
-        desc: "Can view machines, users, and generate their own erişim anahtarıs.",
-      };
-    case "member":
-      return {
-        name: "Member",
-        desc: "Cannot view the admin console.",
-      };
-    default:
-      return {
-        name: role,
-        desc: "No description available.",
-      };
-  }
 }

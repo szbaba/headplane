@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import Dialog, { DialogPanel } from "~/components/dialog";
 import Input from "~/components/input";
 import Text from "~/components/text";
@@ -12,22 +14,21 @@ interface RenameProps {
 
 // TODO: Server side validation before submitting
 export default function RenameUser({ user, isOpen, setIsOpen }: RenameProps) {
+  const { t } = useTranslation();
+  const name = user.name || user.displayName;
   return (
     <Dialog isOpen={isOpen} onOpenChange={setIsOpen}>
       <DialogPanel>
-        <Title>Rename {user.name || user.displayName}?</Title>
-        <Text className="mb-6">
-          Enter a new username for {user.name || user.displayName}. Changing a username will not
-          update any ACL policies that may refer to this user by their old username.
-        </Text>
+        <Title>{t("users.renameUserPrompt", { name })}</Title>
+        <Text className="mb-6">{t("users.renameUserDesc", { name })}</Text>
         <input name="action_id" type="hidden" value="rename_user" />
         <input name="user_id" type="hidden" value={user.id} />
         <Input
           defaultValue={user.name}
           required
-          label="Username"
+          label={t("users.username")}
           name="new_name"
-          placeholder="my-new-name"
+          placeholder={t("users.newNamePlaceholder")}
         />
       </DialogPanel>
     </Dialog>

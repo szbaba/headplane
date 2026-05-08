@@ -1,4 +1,5 @@
 import { type } from "arktype";
+import { useTranslation } from "react-i18next";
 
 import Code from "~/components/code";
 import Dialog, { DialogPanel } from "~/components/dialog";
@@ -20,6 +21,7 @@ interface RenameProps {
 }
 
 export default function Rename({ machine, magic, isOpen, setIsOpen }: RenameProps) {
+  const { t } = useTranslation();
   const form = useForm({
     schema: renameSchema,
     defaultValues: { name: machine.givenName },
@@ -29,26 +31,27 @@ export default function Rename({ machine, magic, isOpen, setIsOpen }: RenameProp
   return (
     <Dialog isOpen={isOpen} onOpenChange={setIsOpen}>
       <DialogPanel>
-        <Title>Edit machine name for {machine.givenName}</Title>
-        <Text className="mb-6">
-          This name is shown in the admin panel, in Tailscale clients, and used when generating
-          MagicDNS names.
-        </Text>
+        <Title>{t("machinesDialog.renameTitle", { name: machine.givenName })}</Title>
+        <Text className="mb-6">{t("machinesDialog.renameDesc")}</Text>
         <input name="action_id" type="hidden" value="rename" />
         <input name="node_id" type="hidden" value={machine.id} />
-        <Input {...form.field("name")} required label="Machine name" placeholder="Machine name" />
+        <Input
+          {...form.field("name")}
+          required
+          label={t("machines.machineName")}
+          placeholder={t("machines.machineNamePlaceholder")}
+        />
         {magic ? (
           name.length > 0 && name !== machine.givenName ? (
             <p className="mt-2 text-sm leading-tight text-mist-600 dark:text-mist-300">
-              This machine will be accessible by the hostname{" "}
+              {t("machinesDialog.renameHostnameNew")}
               <Code className="text-sm">{name.toLowerCase().replaceAll(/\s+/g, "-")}</Code>
-              {". "}
-              The hostname <Code className="text-sm">{machine.givenName}</Code> will no longer point
-              to this machine.
+              {t("machinesDialog.renameHostnameOldSuffix")}
+              <Code className="text-sm">{machine.givenName}</Code>.
             </p>
           ) : (
             <p className="mt-2 text-sm leading-tight text-mist-600 dark:text-mist-300">
-              This machine is accessible by the hostname{" "}
+              {t("machinesDialog.renameHostnameSame")}
               <Code className="text-sm">{machine.givenName}</Code>.
             </p>
           )
