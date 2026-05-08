@@ -152,7 +152,7 @@ export const action = userAction;
 export default function Page({ loaderData }: Route.ComponentProps) {
   return (
     <>
-      <h1 className="mb-1.5 text-2xl font-medium">Users</h1>
+      <h1 className="mb-1.5 text-2xl font-medium">Kullanıcılar</h1>
       <p className="text-md mb-8">Manage the users in your network and their permissions.</p>
       <ManageBanner isDisabled={!loaderData.writable} oidc={loaderData.oidc} />
 
@@ -169,7 +169,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
       )}
 
       <section>
-        <h2 className="mb-3 text-lg font-medium">Headplane Users</h2>
+        <h2 className="mb-3 text-lg font-medium">Yönetim Paneli Kullanıcıları</h2>
         {loaderData.headplaneUsers.length === 0 ? (
           <p className="text-sm text-mist-600 dark:text-mist-300">
             No users have signed into Headplane yet.
@@ -211,7 +211,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
 
       {!loaderData.apiError && loaderData.unlinkedHeadscaleUsers.length > 0 && (
         <section className="mt-10">
-          <h2 className="mb-1 text-lg font-medium">Unlinked Headscale Users</h2>
+          <h2 className="mb-1 text-lg font-medium">Bağlanmamış Headscale Kullanıcıları</h2>
           <p className="mb-3 text-sm text-mist-600 dark:text-mist-300">
             These Headscale users are not linked to a Headplane account and cannot be managed
             through Headplane.

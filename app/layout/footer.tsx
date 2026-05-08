@@ -22,11 +22,11 @@ export default function Footer({ isDebug, baseUrl }: FooterProps) {
     >
       <div className="container flex items-center justify-between py-2">
         <p className="text-xs">
-          Headplane is free and open-source. Please consider{" "}
+          Bu yönetim paneli Corsecure tarafından, Headplane (MIT) açık kaynak projesi taban alınarak Türkçeleştirildi. Orijinal projeyi{" "}
           <Link external styled to="https://tale.me/sponsor">
-            sponsoring
+            desteklemek
           </Link>{" "}
-          to support development.
+          için katkıda bulunabilirsiniz.
         </p>
         <div className="flex items-center gap-2 text-xs">
           {isDebug && (
@@ -37,7 +37,7 @@ export default function Footer({ isDebug, baseUrl }: FooterProps) {
                 "dark:bg-amber-900/50 dark:text-amber-300",
               )}
             >
-              Debug
+              Hata Ayıklama
             </span>
           )}
           <p className="text-mist-500 dark:text-mist-400">

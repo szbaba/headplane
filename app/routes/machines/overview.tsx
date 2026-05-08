@@ -213,7 +213,7 @@ export default function Page({ loaderData }: Route.ComponentProps) {
     <>
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col">
-          <h1 className="mb-2 text-2xl font-medium">Machines</h1>
+          <h1 className="mb-2 text-2xl font-medium">Cihazlar</h1>
           <p>
             Manage the devices connected to your Tailnet.{" "}
             <Link external styled to="https://tailscale.com/kb/1372/manage-devices">

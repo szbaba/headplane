@@ -41,17 +41,17 @@ export interface HeaderProps {
 }
 
 const tabs = [
-  { to: "/machines", icon: Server, label: "Machines", key: "machines" },
-  { to: "/users", icon: Users, label: "Users", key: "users" },
-  { to: "/acls", icon: Lock, label: "Access Control", key: "policy" },
+  { to: "/machines", icon: Server, label: "Cihazlar", key: "machines" },
+  { to: "/users", icon: Users, label: "Kullanıcılar", key: "users" },
+  { to: "/acls", icon: Lock, label: "Erişim Kontrolü", key: "policy" },
   { to: "/dns", icon: Globe, label: "DNS", key: "dns" },
-  { to: "/settings", icon: Settings, label: "Settings", key: "settings" },
+  { to: "/settings", icon: Settings, label: "Ayarlar", key: "settings" },
 ] as const;
 
 const colorSchemes = [
-  { value: "system", label: "System", icon: Monitor },
-  { value: "light", label: "Light", icon: Sun },
-  { value: "dark", label: "Dark", icon: Moon },
+  { value: "system", label: "Sistem", icon: Monitor },
+  { value: "light", label: "Açık", icon: Sun },
+  { value: "dark", label: "Koyu", icon: Moon },
 ] as const satisfies ReadonlyArray<{
   value: ColorScheme;
   label: string;
@@ -82,9 +82,9 @@ export default function Header({ user, access, configAvailable }: HeaderProps) {
             <picture className="min-w-8">
               <source srcSet={logoLight} media="(prefers-color-scheme: dark)" />
               <source srcSet={logoDark} media="(prefers-color-scheme: light)" />
-              <img src={logoBg} alt="Headplane logo" />
+              <img src={logoBg} alt="Corsecure Yönetim Paneli" />
             </picture>
-            <h1 className="text-2xl font-semibold">headplane</h1>
+            <h1 className="text-2xl font-semibold">Corsecure</h1>
           </div>
           {showTabs && (
             <nav className="hidden items-center gap-x-2 overflow-x-auto p-1 text-sm font-medium md:flex">

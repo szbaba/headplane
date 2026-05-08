@@ -1,4 +1,15 @@
-# Headplane
+# Headplane (Corsecure Türkçeleştirilmiş Sürüm)
+
+> **Bu repo Corsecure'un fork'udur.** Orijinal proje: [tale/headplane](https://github.com/tale/headplane) — MIT lisans.
+>
+> **Değişiklikler:**
+> - UI Türkçeleştirildi (sayfa başlıkları, menü, butonlar)
+> - Header/footer'da Corsecure brand
+> - Container imajı: `ghcr.io/szbaba/headplane:VERSION`
+>
+> Upstream güncellemeleri periyodik olarak merge edilir.
+
+---
 
 > A feature-complete web UI for [Headscale](https://headscale.net)
 

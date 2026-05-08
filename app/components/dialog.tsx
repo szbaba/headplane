@@ -83,7 +83,7 @@ function Panel(props: DialogPanelProps) {
             <AlertDialog.Close render={<Button>Close</Button>} />
           ) : (
             <>
-              <AlertDialog.Close render={<Button>Cancel</Button>} />
+              <AlertDialog.Close render={<Button>İptal</Button>} />
               <AlertDialog.Close ref={closeRef} className="hidden" aria-hidden tabIndex={-1} />
               <Button
                 disabled={isDisabled}

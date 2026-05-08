@@ -190,7 +190,7 @@ export default function Page({
           Their keys may not be listed correctly. Please check the server logs for more information.
         </Notice>
       ) : undefined}
-      <h1 className="mb-2 text-2xl font-medium">Pre-Auth Keys</h1>
+      <h1 className="mb-2 text-2xl font-medium">Ön Yetkilendirme Anahtarları</h1>
       <p className="mb-4">
         Headscale fully supports pre-authentication keys in order to easily add devices to your
         Tailnet. To learn more about using pre-authentication keys, visit the{" "}

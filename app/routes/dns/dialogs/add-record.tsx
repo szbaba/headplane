@@ -50,7 +50,7 @@ export default function AddRecord({ records }: Props) {
     <Dialog>
       <Button>Add DNS record</Button>
       <DialogPanel onSubmit={() => form.reset()}>
-        <Title>Add DNS record</Title>
+        <Title>DNS Kaydı Ekle</Title>
         <Text>Enter the domain and IP address for the new DNS record.</Text>
         <div className="mt-4 flex flex-col gap-2">
           <input type="hidden" name="action_id" value="add_record" />

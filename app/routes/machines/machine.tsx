@@ -238,7 +238,7 @@ export default function Page({
           </Button>
         </div>
       </Card>
-      <h2 className="text-xl font-medium">Machine Details</h2>
+      <h2 className="text-xl font-medium">Cihaz Detayları</h2>
       <p className="mb-4">
         Information about this machine’s network. Used to debug connection issues.
       </p>

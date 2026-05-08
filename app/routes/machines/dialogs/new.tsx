@@ -35,7 +35,7 @@ export default function NewMachine(data: NewMachineProps) {
     <>
       <Dialog isOpen={pushDialog} onOpenChange={setPushDialog}>
         <DialogPanel isDisabled={!form.canSubmit}>
-          <Title>Register Machine Key</Title>
+          <Title>Cihaz Anahtarı Kaydet</Title>
           <Text>The machine key is given when you run the following command on your device:</Text>
           <CodeBlock className="mb-4">{`tailscale up --login-server=${data.server}`}</CodeBlock>
           <input name="action_id" type="hidden" value="register" />

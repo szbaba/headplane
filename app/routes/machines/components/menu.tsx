@@ -155,9 +155,9 @@ export default function MachineMenu({
           )}
         </MenuTrigger>
         <MenuContent>
-          <MenuItem onClick={() => setModal("rename")}>Edit machine name</MenuItem>
-          <MenuItem onClick={() => setModal("routes")}>Edit route settings</MenuItem>
-          <MenuItem onClick={() => setModal("tags")}>Edit ACL tags</MenuItem>
+          <MenuItem onClick={() => setModal("rename")}>Cihaz Adını Düzenle</MenuItem>
+          <MenuItem onClick={() => setModal("routes")}>Yönlendirme Ayarlarını Düzenle</MenuItem>
+          <MenuItem onClick={() => setModal("tags")}>ACL Etiketlerini Düzenle</MenuItem>
           {supportsNodeOwnerChange && (
             <MenuItem onClick={() => setModal("move")}>Change owner</MenuItem>
           )}

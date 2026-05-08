@@ -67,7 +67,7 @@ export default function Page({ loaderData: { access, writable, policy } }: Route
           <Code>database</Code> in your Headscale configuration.
         </Notice>
       ) : undefined}
-      <h1 className="mb-4 text-2xl font-medium">Access Control List (ACL)</h1>
+      <h1 className="mb-4 text-2xl font-medium">Erişim Kontrol Listesi (ACL)</h1>
       <p className="mb-4 max-w-prose">
         The ACL file is used to define the access control rules for your network. You can find more
         information about the ACL file in the{" "}
@@ -91,7 +91,7 @@ export default function Page({ loaderData: { access, writable, policy } }: Route
           <TabsTab value="edit">
             <div className="flex items-center gap-2">
               <Pencil className="p-1" />
-              <span>Edit file</span>
+              <span>Dosyayı Düzenle</span>
             </div>
           </TabsTab>
           <TabsTab value="diff">
