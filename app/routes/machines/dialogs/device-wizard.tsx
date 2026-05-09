@@ -332,52 +332,78 @@ export default function DeviceWizard({
                   <CopyableBlock text={buildCommand(platform, generatedKey)} />
                 </>
               ) : (
+                /*
+                 * Mobil (iOS/Android) — SaaS DeviceOnboarding pattern:
+                 * Birincil yol OIDC akışı (URL + Sign In + tarayıcı corsecure
+                 * giriş). Auth-key paste mobil Tailscale uygulamasında
+                 * desteklenmiyor zaten; kullanıcıya gösterilen birincil akış
+                 * temiz olsun. Auth-key + QR fallback "İleri seviye"
+                 * altında collapsible — geek/headless senaryolar için.
+                 */
                 <div className="space-y-3">
                   <CopyableBlock text={server} label={t("wizard.mobileLoginServer")} />
-                  <CopyableBlock text={generatedKey} label={t("wizard.mobileAuthKey")} />
 
-                  {/* QR kod toggle — mobil app için manuel paste alternatifi */}
-                  <button
-                    type="button"
-                    onClick={() => setQrShown((v) => !v)}
-                    className={cn(
-                      "inline-flex items-center gap-1.5 rounded-md text-sm",
-                      "border border-mist-200 dark:border-mist-700",
-                      "bg-white dark:bg-mist-800",
-                      "px-3 py-1.5 hover:bg-mist-50 dark:hover:bg-mist-700",
-                    )}
-                  >
-                    <QrCode className="h-4 w-4" />
-                    {qrShown ? t("wizard.qrHideKey") : t("wizard.qrShowKey")}
-                  </button>
+                  <ol className="list-decimal space-y-2 pl-5 text-sm text-mist-700 marker:text-mist-500 dark:text-mist-200 dark:marker:text-mist-400">
+                    <li>{t("wizard.mobileOidcStep1")}</li>
+                    <li>{t("wizard.mobileOidcStep2")}</li>
+                    <li>{t("wizard.mobileOidcStep3")}</li>
+                    <li>{t("wizard.mobileOidcStep4")}</li>
+                  </ol>
 
-                  {qrShown && qrServerUrl && qrKeyUrl ? (
-                    <div className="grid grid-cols-1 gap-4 rounded-lg border border-mist-200 bg-mist-50 p-4 sm:grid-cols-2 dark:border-mist-700 dark:bg-mist-900">
-                      <div className="flex flex-col items-center gap-2">
-                        <p className="text-sm font-medium">{t("wizard.qrServerLabel")}</p>
-                        <img
-                          src={qrServerUrl}
-                          alt={t("wizard.qrServerLabel")}
-                          className="rounded-md bg-white p-2"
-                        />
-                      </div>
-                      <div className="flex flex-col items-center gap-2">
-                        <p className="text-sm font-medium">{t("wizard.qrKeyLabel")}</p>
-                        <img
-                          src={qrKeyUrl}
-                          alt={t("wizard.qrKeyLabel")}
-                          className="rounded-md bg-white p-2"
-                        />
-                      </div>
-                      <p className="col-span-full text-xs text-mist-600 dark:text-mist-400">
-                        {t("wizard.qrHint")}
+                  <div className="rounded-md border border-blue-200 bg-blue-50 p-3 text-xs text-blue-900 dark:border-blue-700 dark:bg-blue-950/30 dark:text-blue-200">
+                    {t("wizard.mobileOidcInfo")}
+                  </div>
+
+                  {/* İleri seviye — auth-key + QR (gizli, collapsible) */}
+                  <details className="mt-2 rounded-md border border-mist-200 bg-mist-50/50 p-3 dark:border-mist-700 dark:bg-mist-900/40">
+                    <summary className="cursor-pointer text-sm font-medium text-mist-700 dark:text-mist-200">
+                      {t("wizard.advancedAuthKeyTitle")}
+                    </summary>
+                    <div className="mt-3 space-y-3">
+                      <p className="text-xs text-mist-600 dark:text-mist-400">
+                        {t("wizard.advancedAuthKeyDesc")}
                       </p>
-                    </div>
-                  ) : null}
+                      <CopyableBlock text={generatedKey} label={t("wizard.mobileAuthKey")} />
 
-                  <p className="text-sm text-mist-600 dark:text-mist-300">
-                    {t("wizard.mobileSettingsHint")}
-                  </p>
+                      <button
+                        type="button"
+                        onClick={() => setQrShown((v) => !v)}
+                        className={cn(
+                          "inline-flex items-center gap-1.5 rounded-md text-sm",
+                          "border border-mist-200 dark:border-mist-700",
+                          "bg-white dark:bg-mist-800",
+                          "px-3 py-1.5 hover:bg-mist-50 dark:hover:bg-mist-700",
+                        )}
+                      >
+                        <QrCode className="h-4 w-4" />
+                        {qrShown ? t("wizard.qrHideKey") : t("wizard.qrShowKey")}
+                      </button>
+
+                      {qrShown && qrServerUrl && qrKeyUrl ? (
+                        <div className="grid grid-cols-1 gap-4 rounded-lg border border-mist-200 bg-mist-50 p-4 sm:grid-cols-2 dark:border-mist-700 dark:bg-mist-900">
+                          <div className="flex flex-col items-center gap-2">
+                            <p className="text-sm font-medium">{t("wizard.qrServerLabel")}</p>
+                            <img
+                              src={qrServerUrl}
+                              alt={t("wizard.qrServerLabel")}
+                              className="rounded-md bg-white p-2"
+                            />
+                          </div>
+                          <div className="flex flex-col items-center gap-2">
+                            <p className="text-sm font-medium">{t("wizard.qrKeyLabel")}</p>
+                            <img
+                              src={qrKeyUrl}
+                              alt={t("wizard.qrKeyLabel")}
+                              className="rounded-md bg-white p-2"
+                            />
+                          </div>
+                          <p className="col-span-full text-xs text-mist-600 dark:text-mist-400">
+                            {t("wizard.qrHint")}
+                          </p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </details>
                 </div>
               )}
             </div>
