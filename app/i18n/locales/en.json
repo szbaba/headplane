@@ -479,7 +479,12 @@
     "warningTitle": "Important",
     "warningMacOS": "App Store version won't work — sandbox prevents custom login server. Install Standalone version from the .pkg link above.",
     "warningExpire": "This key expires in 24 hours if unused. Single-use only.",
-    "doneButton": "Done, close"
+    "doneButton": "Done, close",
+    "qrShowKey": "Show QR codes",
+    "qrHideKey": "Hide QR codes",
+    "qrServerLabel": "Login Server QR",
+    "qrKeyLabel": "Auth Key QR",
+    "qrHint": "Scan QR codes with your phone's camera and paste into the Tailscale app."
   },
   "machinesDialog": {
     "registerTitle": "Register Machine Key",

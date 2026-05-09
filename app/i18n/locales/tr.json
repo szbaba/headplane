@@ -479,7 +479,12 @@
     "warningTitle": "Önemli",
     "warningMacOS": "App Store sürümü çalışmaz — sandbox kısıtı yüzünden custom login server kullanamazsınız. Yukarıdaki .pkg linkinden Standalone sürümü kurun.",
     "warningExpire": "Bu anahtar 24 saat içinde kullanılmazsa süresi dolar. Tek kullanımlıktır.",
-    "doneButton": "Bitti, kapat"
+    "doneButton": "Bitti, kapat",
+    "qrShowKey": "QR kodu göster",
+    "qrHideKey": "QR kodu gizle",
+    "qrServerLabel": "Login Sunucusu QR'ı",
+    "qrKeyLabel": "Auth Anahtarı QR'ı",
+    "qrHint": "Telefonunuzun kamerasıyla QR kodları tarayıp Tailscale uygulamasına yapıştırın."
   },
   "machinesDialog": {
     "registerTitle": "Cihaz Anahtarı Kaydet",
