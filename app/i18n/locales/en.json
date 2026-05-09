@@ -489,6 +489,7 @@
     "owner": "Owner",
     "selectUser": "Select a user",
     "addDevice": "Add Device",
+    "advancedButton": "Advanced",
     "registerMenuItem": "Register Machine Key",
     "generateMenuItem": "Generate Auth Key",
     "machineSettings": "Machine Settings",
